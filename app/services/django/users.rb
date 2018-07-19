@@ -8,7 +8,7 @@ module Django
     end
 
     def create(user)
-      response = post('/api/v1/users', user_attributes(user))
+      response = post('/api/v1/users/', user_attributes(user))
       JSON.parse(response.body, symbolize_names: true)
     end
 
@@ -17,6 +17,7 @@ module Django
     def post(path, payload)
       @conn.post do |req|
         req.url path
+        req.headers['Content-Type'] = 'application/json'
         req.body = payload
       end
     end

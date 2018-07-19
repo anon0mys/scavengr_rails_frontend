@@ -3,6 +3,10 @@ require 'rails_helper'
 describe 'A visitor' do
   context 'can create an account' do
     scenario 'and is successfully logged in' do
+      expected = { user: {:id=>2, :email=>"test@mail.com", :auth_token=>"test" }}
+      stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users/')
+        .to_return(status: 201, body: expected.to_json)
+
       visit '/'
 
       click_on 'Create Account'

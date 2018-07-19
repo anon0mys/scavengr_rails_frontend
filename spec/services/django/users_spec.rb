@@ -12,12 +12,9 @@ describe Django::Users do
       user_attrs = { email: 'test@mail.com', password: 'password' }
       user = User.new(user_attrs)
       service = Django::Users.new()
-      expected = { user: { email: user.email,
-                           password: user.password_digest,
-                           id: 1,
-                           auth_token: 1 }}
+      expected = { user: {:id=>2, :email=>"test@mail.com", :auth_token=>"test" }}
 
-      stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users')
+      stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users/')
         .to_return(status: 201, body: expected.to_json)
 
       response = service.create(user)
