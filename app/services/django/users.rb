@@ -3,18 +3,23 @@ module Django
     attr_reader :base_url
 
     def initialize()
-      @base_url = 'https://4f29d79d-6b37-48ca-a3af-a77a02a03b3b.mock.pstmn.io'
+      @base_url = 'https://scavengr-django.herokuapp.com'
       @conn = Faraday.new(url: @base_url)
     end
 
     def create(user)
-      @conn.post do |req|
-        req.url '/api/v1/users'
-        req.body = user_attributes(user)
-      end
+      response = post('/api/v1/users', user_attributes(user))
+      JSON.parse(response.body, symbolize_names: true)
     end
 
     private
+
+    def post(path, payload)
+      @conn.post do |req|
+        req.url path
+        req.body = payload
+      end
+    end
 
     def user_attributes(user)
       attrs = { user: { email: user.email, password: user.password_digest }}
