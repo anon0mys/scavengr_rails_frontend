@@ -6,8 +6,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     service = Django::Users.new()
     response = service.create(user)
-    session[:user_id] = response[:user][:id]
-    session[:auth_token] = response[:user][:auth_token]
+    session[:current_user] = response[:user]
     flash[:success] = 'Your account was created successfully'
     redirect_to root_path
   end
