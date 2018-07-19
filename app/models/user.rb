@@ -1,7 +1,7 @@
 class User
-  def initialize()
-    @email = nil
-    @password = nil
+  def initialize(attrs)
+    @email = attrs[:email]
+    @password = BCrypt::Password.create(attrs[:password])
     @id = nil
   end
 end
