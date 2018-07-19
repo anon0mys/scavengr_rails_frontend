@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'A visitor' do
+feature 'A visitor' do
   context 'can create an account' do
     scenario 'and is successfully logged in' do
       expected = { user: {:id=>2, :email=>"test@mail.com", :auth_token=>"test" }}

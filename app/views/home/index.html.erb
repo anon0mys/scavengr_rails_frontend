@@ -2,4 +2,5 @@
   <%= "Logged in as: #{@user.email}" %>
 <% else %>
   <%= link_to 'Create Account', create_account_path %>
+  <%= link_to 'Log In', login_path %>
 <% end %>
