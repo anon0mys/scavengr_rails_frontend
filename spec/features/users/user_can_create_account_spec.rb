@@ -9,8 +9,8 @@ describe 'A visitor' do
 
       expect(current_path).to eq(create_account_path)
 
-      fill_in 'user[email]', with: 'test@mail.com'
-      fill_in 'user[password]', with: 'password'
+      fill_in 'email', with: 'test@mail.com'
+      fill_in 'password', with: 'password'
       click_on 'Create Account'
 
       expect(current_path).to eq(root_path)
