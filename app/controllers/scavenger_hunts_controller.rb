@@ -1,7 +1,6 @@
 class ScavengerHuntsController < ApplicationController
   def index
-    user = User.new(session[:current_user]) if session[:current_user]
-    service = Django::ScavengerHunts.new(user)
+    service = Django::ScavengerHunts.new(current_user)
     @scavenger_hunts = service.find_all
   end
 
@@ -10,17 +9,15 @@ class ScavengerHuntsController < ApplicationController
   end
 
   def create
-    user = User.new(session[:current_user])
     scavenger_hunt = ScavengerHunt.new(hunt_params)
-    service = Django::ScavengerHunts.new(user)
+    service = Django::ScavengerHunts.new(current_user)
     response = service.create(scavenger_hunt)
     flash[:success] = "Scavenger hunt #{scavenger_hunt.name} created successfully"
     redirect_to scavenger_hunts_path
   end
 
   def show
-    user = User.new(session[:current_user])
-    service = Django::ScavengerHunts.new(user)
+    service = Django::ScavengerHunts.new(current_user)
     @scavenger_hunt = service.find(params[:id])
   end
 
