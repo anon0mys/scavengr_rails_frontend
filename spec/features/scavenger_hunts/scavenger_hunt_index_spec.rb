@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'A logged in user' do
   context 'on the scavenger hunts index' do
     scenario 'can see a list of all scavenger hunts' do
+      stub_request(:get, 'https://scavengr-django.herokuapp.com')
+      .to_return(status: 200, body: File.read('./spec/fixtures/json/scavenger_hunts.json'))
+
       visit root_path
 
       click_on 'Log In'
@@ -17,6 +20,7 @@ feature 'A logged in user' do
       visit '/scavenger_hunts'
 
       expect(page).to have_content 'Scavenger Hunts'
+      expect(page).to have_content 'Test Scavenger Hunt'
     end
   end
 end

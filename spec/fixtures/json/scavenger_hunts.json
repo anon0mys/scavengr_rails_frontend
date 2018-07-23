@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 2,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 3,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 4,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 5,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 6,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 7,
+        "name": "Test Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    }
+]
