@@ -23,7 +23,7 @@ module Django
     end
 
     def user_attributes(user)
-      attrs = { user: { email: user.email, password: user.password_digest }}
+      attrs = { username: user.username, email: user.email, password: user.password }
       attrs.to_json
     end
   end
