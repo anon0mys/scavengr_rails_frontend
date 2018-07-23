@@ -12,13 +12,27 @@ class ScavengerHuntsController < ApplicationController
     scavenger_hunt = ScavengerHunt.new(hunt_params)
     service = Django::ScavengerHunts.new(current_user)
     response = service.create(scavenger_hunt)
-    flash[:success] = "Scavenger hunt #{scavenger_hunt.name} created successfully"
+    flash[:success] = "Scavenger hunt #{response[:name]} created successfully"
     redirect_to scavenger_hunts_path
   end
 
   def show
     service = Django::ScavengerHunts.new(current_user)
     @scavenger_hunt = service.find(params[:id])
+  end
+
+  def edit
+    service = Django::ScavengerHunts.new(current_user)
+    @scavenger_hunt = service.find(params[:id])
+  end
+
+  def update
+    scavenger_hunt = ScavengerHunt.new(hunt_params)
+    scavenger_hunt.id = params[:id]
+    service = Django::ScavengerHunts.new(current_user)
+    response = service.update(scavenger_hunt)
+    flash[:success] = "Scavenger hunt #{response[:name]} updated successfully"
+    redirect_to scavenger_hunt_path(response[:id])
   end
 
   private

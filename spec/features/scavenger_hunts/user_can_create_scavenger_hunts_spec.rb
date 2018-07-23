@@ -1,23 +1,23 @@
 require 'rails_helper'
 
 feature 'A logged in user' do
-  context 'from the new scavenger hunts path' do
-    scenario 'can create a new scavenger hunt' do
-      visit login_path
-      fill_in 'username', with: 'test'
-      fill_in 'password', with: 'password'
+  scenario 'can create a new scavenger hunt' do
+    # stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/scavenger_hunts')
+    # .to_return(status: 201, body: File.read('./spec/fixtures/json/scavenger_hunt.json'))
 
-      click_on 'Log In'
+    attrs = { id: 1, username: 'test', email: 'test@mail.com', token: '56963da5d3ab5155ae8f40fc3612f3a1986a5f38' }
+    user = User.new(attrs)
 
-      visit new_scavenger_hunt_path
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      fill_in 'scavenger_hunt[name]', with: 'Test Scavenger Hunt'
-      fill_in 'scavenger_hunt[description]', with: 'Testing the ability to add hunts'
+    visit new_scavenger_hunt_path
 
-      click_on 'Create Scavenger Hunt'
+    fill_in 'scavenger_hunt[name]', with: 'Test Scavenger Hunt'
+    fill_in 'scavenger_hunt[description]', with: 'Testing the ability to add hunts'
 
-      expect(current_path).to eq(scavenger_hunts_path)
-      expect(page).to have_content('Test Scavenger Hunt')
-    end
+    click_on 'Create Scavenger Hunt'
+
+    expect(current_path).to eq(scavenger_hunts_path)
+    expect(page).to have_content('Test Scavenger Hunt')
   end
 end

@@ -26,6 +26,11 @@ module Django
       JSON.parse(response.body, symbolize_names: true)
     end
 
+    def update(scavenger_hunt)
+      response = put("/api/v1/scavenger_hunts/#{scavenger_hunt.id}", scavenger_hunt.to_json)
+      JSON.parse(response.body, symbolize_names: true)
+    end
+
     private
 
     def get(path)
@@ -37,6 +42,15 @@ module Django
 
     def post(path, payload)
       @conn.post do |req|
+        req.url path
+        req.headers['Content-Type'] = 'application/json'
+        req.headers['Authorization'] = "Token #{user.token}"
+        req.body = payload
+      end
+    end
+
+    def put(path, payload)
+      @conn.put do |req|
         req.url path
         req.headers['Content-Type'] = 'application/json'
         req.headers['Authorization'] = "Token #{user.token}"

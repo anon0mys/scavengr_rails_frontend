@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[create]
 
-  resources :scavenger_hunts, only: %i[index new create show]
+  resources :scavenger_hunts
 end
