@@ -1,5 +1,6 @@
 <% if @user %>
-  <%= "Logged in as: #{@user.email}" %>
+  <%= "Logged in as: #{@user.username}" %>
+  <%= link_to 'Log Out' %>
 <% else %>
   <%= link_to 'Create Account', create_account_path %>
   <%= link_to 'Log In', login_path %>

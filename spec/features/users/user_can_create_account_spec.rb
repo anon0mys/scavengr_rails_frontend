@@ -20,7 +20,8 @@ feature 'A visitor' do
       click_on 'Create Account'
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('Logged in as: test@mail.com')
+      expect(page).to have_content('Logged in as: test')
+      expect(page).to have_content('Log Out')
     end
   end
 end
