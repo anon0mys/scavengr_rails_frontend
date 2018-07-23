@@ -18,6 +18,12 @@ class ScavengerHuntsController < ApplicationController
     redirect_to scavenger_hunts_path
   end
 
+  def show
+    user = User.new(session[:current_user])
+    service = Django::ScavengerHunts.new(user)
+    @scavenger_hunt = service.find(params[:id])
+  end
+
   private
 
   def hunt_params

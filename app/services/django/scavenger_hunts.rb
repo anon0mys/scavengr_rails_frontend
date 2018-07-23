@@ -16,6 +16,11 @@ module Django
       end
     end
 
+    def find(id)
+      response = get("/api/v1/scavenger_hunts/#{id}")
+      ScavengerHunt.new(JSON.parse(response.body, symbolize_names: true))
+    end
+
     def create(scavenger_hunt)
       response = post('/api/v1/scavenger_hunts/', scavenger_hunt.to_json)
       JSON.parse(response.body, symbolize_names: true)
