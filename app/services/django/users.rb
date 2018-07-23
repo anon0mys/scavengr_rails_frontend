@@ -12,6 +12,11 @@ module Django
       JSON.parse(response.body, symbolize_names: true)
     end
 
+    def authenticate(user)
+      response = post('/api/v1/users/authenticate/', user_attributes(user))
+      JSON.parse(response.body, symbolize_names: true)
+    end
+
     private
 
     def post(path, payload)
@@ -23,7 +28,7 @@ module Django
     end
 
     def user_attributes(user)
-      attrs = { user: { email: user.email, password: user.password_digest }}
+      attrs = { username: user.username, email: user.email, password: user.password }
       attrs.to_json
     end
   end

@@ -1,4 +1,6 @@
 <%= form_tag users_path, method: :post do %>
+  <%= label_tag 'Username' %>
+  <%= text_field_tag :username, nil, placeholder: 'username' %>
   <%= label_tag 'Email' %>
   <%= email_field_tag :email, nil, placeholder: 'your_email@here.com' %>
   <%= label_tag 'Password' %>
