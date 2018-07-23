@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   resources :users, only: %i[create]
+
+  resources :scavenger_hunts, only: %i[index new create]
 end
