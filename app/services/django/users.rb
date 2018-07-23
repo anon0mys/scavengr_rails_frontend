@@ -12,6 +12,11 @@ module Django
       JSON.parse(response.body, symbolize_names: true)
     end
 
+    def authenticate(user)
+      response = post('/api/v1/users/authenticate/', user_attributes(user))
+      JSON.parse(response.body, symbolize_names: true)
+    end
+
     private
 
     def post(path, payload)

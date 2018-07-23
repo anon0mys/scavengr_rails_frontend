@@ -9,13 +9,13 @@ feature 'A registered user' do
 
       expect(current_path).to eq(login_path)
 
-      fill_in 'email', with: 'test@mail.com'
+      fill_in 'username', with: 'test'
       fill_in 'password', with: 'password'
 
       click_on 'Log In'
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('Logged in as: test@mail.com')
+      expect(page).to have_content('Logged in as: test')
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Log In')
     end

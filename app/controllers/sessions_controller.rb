@@ -3,5 +3,17 @@ class SessionsController < ApplicationController
   end
 
   def create
+    user = User.new(user_params)
+    service = Django::Users.new()
+    response = service.authenticate(user)
+    session[:current_user] = response
+    flash[:success] = 'Successfully logged in'
+    redirect_to root_path
+  end
+
+  private
+
+  def user_params
+    params.permit(:username, :password)
   end
 end
