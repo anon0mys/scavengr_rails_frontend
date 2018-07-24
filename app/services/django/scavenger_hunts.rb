@@ -31,6 +31,10 @@ module Django
       JSON.parse(response.body, symbolize_names: true)
     end
 
+    def destroy(id)
+      delete("/api/v1/scavenger_hunts/#{id}")
+    end
+
     private
 
     def get(path)
@@ -55,6 +59,14 @@ module Django
         req.headers['Content-Type'] = 'application/json'
         req.headers['Authorization'] = "Token #{user.token}"
         req.body = payload
+      end
+    end
+
+    def delete(path)
+      @conn.delete do |req|
+        req.url path
+        req.headers['Content-Type'] = 'application/json'
+        req.headers['Authorization'] = "Token #{user.token}"
       end
     end
   end

@@ -35,6 +35,13 @@ class ScavengerHuntsController < ApplicationController
     redirect_to scavenger_hunt_path(response[:id])
   end
 
+  def destroy
+    service = Django::ScavengerHunts.new(current_user)
+    service.destroy(params[:id])
+    flash[:success] = "Scavenger hunt deleted"
+    redirect_to scavenger_hunts_path
+  end
+
   private
 
   def hunt_params
