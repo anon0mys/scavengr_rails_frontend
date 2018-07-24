@@ -5,7 +5,7 @@ describe ElasticService do
     it 'initializes with an elastic search client' do
       service = ElasticService.new()
 
-      expect(service.client).to be_instance_of Elasticsearch::Client
+      expect(service.client).to be_instance_of Elasticsearch::Transport::Client
     end
   end
 end
