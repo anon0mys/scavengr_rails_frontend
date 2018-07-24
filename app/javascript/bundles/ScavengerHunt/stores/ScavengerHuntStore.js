@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import ScavengerHuntApi from '../bundles/ScavengerHunt/services/ScavengerHuntApi';
+import ScavengerHuntApi from '../services/ScavengerHuntApi';
 
 class ScavengerHuntStore {
   @observable scavenger_hunt = {};
