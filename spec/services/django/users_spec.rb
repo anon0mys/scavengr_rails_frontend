@@ -31,8 +31,8 @@ describe Django::Users do
 
       expected = { id: 1, username: 'test', email: 'test@mail.com', token: 'token' }
 
-      stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users/')
-      .to_return(status: 201, body: expected.to_json)
+      # stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users/')
+      # .to_return(status: 201, body: expected.to_json)
 
       response = service.authenticate(user)
 

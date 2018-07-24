@@ -1,0 +1,8 @@
+<h2>Scavenger Hunts</h2>
+<ul>
+  <%= @scavenger_hunts.each do |hunt| %>
+    <li><%= hunt.name %></li>
+    <li><%= hunt.username %></li>
+    <li><%= hunt.description %></li>
+  <% end %>
+</ul>
