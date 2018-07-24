@@ -22,6 +22,14 @@ class ScavengerHuntStore {
       this.postCheckin();
     });
   }
+
+  @action recordCheckin = (checking) => {
+    this.checkin = {
+      lat: parseFloat(checkin.lat),
+      lon: parseFloat(checkin.lon),
+      captured_at: parseInt(checking.captured_at)
+    };
+  }
 }
 
 const store = new ScavengerHuntStore();
