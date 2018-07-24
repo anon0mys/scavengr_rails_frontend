@@ -6,6 +6,13 @@ class ElasticService
     @client = Elasticsearch::Client.new
   end
 
+  def add_point(point)
+    binding.pry
+    @client.create index: 'points',
+                   type: '_doc',
+                   body: point.to_json
+  end
+
   def all_points()
     query = @client.search index: 'points',
                            body: {
