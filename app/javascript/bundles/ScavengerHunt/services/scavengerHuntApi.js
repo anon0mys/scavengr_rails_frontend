@@ -1,7 +1,7 @@
 import ActionCable from 'actioncable';
 
 export default class ScavengerHuntApi {
-  constructor(){
+  constructor() {
     this.cable = ActionCable.createConsumer('/cable');
     this.subscription = false;
   }

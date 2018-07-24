@@ -1,8 +1,14 @@
 development:
-  adapter: async
+  # adapter: async
+  adapter: redis
+  url: redis://localhost:6379/1
+  channel_prefix: scavengr_rails_frontend_development
 
 test:
-  adapter: async
+  # adapter: async
+  adapter: redis
+  url: redis://localhost:6379/1
+  channel_prefix: scavengr_rails_frontend_test
 
 production:
   adapter: redis
