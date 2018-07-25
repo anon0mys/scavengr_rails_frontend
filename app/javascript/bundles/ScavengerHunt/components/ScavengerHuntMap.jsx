@@ -2,9 +2,9 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import MapGL, {Marker} from 'react-map-gl';
 import moment from 'moment';
-// import MARKER_STYLE from '../markerStyle';
+import MARKER_STYLE from '../markerStyle';
 
-const token = process.env.MapboxAccessToken;
+const token = "pk.eyJ1IjoiaWRlYWx0eXBpY2FsIiwiYSI6ImNqazBjcG1tZDA1ZjIzcHFsY3NzeDZjbGUifQ.TKZIYgbzt9g7HVfScLh2cg";
 
 @inject('ScavengerHuntStore')
 
@@ -67,7 +67,7 @@ export default class ScavengerHuntStore extends React.Component {
         onViewportChange={this.onViewportChange}
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>
-        { ScavengerHuntStore.checkins.map(this.renderMarker) }
+        { ScavengerHuntStore.checkin.renderMarker }
       </MapGL>
     );
   }
