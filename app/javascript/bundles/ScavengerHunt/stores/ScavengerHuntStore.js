@@ -20,8 +20,7 @@ class ScavengerHuntStore {
       })
       //send location to the server
       this.postCheckin();
-    });
-  }
+    };
 
   @action recordCheckin = (checking) => {
     this.checkin = {
@@ -29,6 +28,21 @@ class ScavengerHuntStore {
       lon: parseFloat(checkin.lon),
       captured_at: parseInt(checking.captured_at)
     };
+  }
+
+  @action postCheckin = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.scavengerHuntApi.postCheckin(
+        this.scavengerHunt.user_id,
+        position.coords.latitude,
+        position.coords.longitude,
+        position.timestamp
+      );
+
+      setTimeout(() => {
+        this.postCheckin();
+      }, 500);
+    });
   }
 }
 

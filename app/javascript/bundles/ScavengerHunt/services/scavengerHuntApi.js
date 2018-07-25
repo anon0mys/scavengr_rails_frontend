@@ -7,7 +7,26 @@ export default class ScavengerHuntApi {
   }
 
   findScavengerHunt = (id) => {
+    console.log(id)
     return fetch(`/maps/${id}/`)
       .then(response => response.json())
+  }
+
+  subscribeScavengerHunt = (user_id, callback) => {
+    this.subscription = this.cable.subscriptions.create({
+      channel: "ScavengerHuntChannel",
+      room: user_id
+    }, {
+      received: callback
+    });
+  }
+
+  postCheckin = (user_id, lat, lon, captured_at) => {
+    this.subscription.send({
+      user_id,
+      lat,
+      lon,
+      captured_at
+    });
   }
 }

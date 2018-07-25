@@ -7,10 +7,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'scavenger-hunt-bundle' %>
   </head>
 
   <body>
     <%= yield %>
-    <%= javascript_pack_tag 'webpack-bundle' %>
+    <!-- <%= javascript_pack_tag 'hello-world-bundle' %> -->
   </body>
 </html>
