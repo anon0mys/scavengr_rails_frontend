@@ -7,8 +7,7 @@ export default class ScavengerHuntApi {
   }
 
   findScavengerHunt = (id) => {
-    console.log(id)
-    return fetch(`/maps/${id}/`)
+    return fetch(`/maps/${id}`, { credentials: "same-origin" })
       .then(response => response.json())
   }
 

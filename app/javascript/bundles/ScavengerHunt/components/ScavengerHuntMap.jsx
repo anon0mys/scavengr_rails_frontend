@@ -16,22 +16,45 @@ export default class ScavengerHuntStore extends React.Component {
     this.state = {
       viewport: {
         latitude: 43.6532,
-        longitude: -79.3832
+        longitude: -79.3832,
+        zoom: 16,
+        bearing: 0,
+        pitch: 50,
+        width: window.innerWidth,
+        height: window.innerHeight
       },
       settings: {
-
+        dragPan: true,
+        dragRotate: true,
+        scrollZoom: true,
+        touchZoomRotate: true,
+        doubleClickZoom: true,
+        minZoom: 0,
+        maxZoom: 20,
+        minPitch: 0,
+        maxPitch: 85
       }
     };
   }
 
   renderMarker = (checkin) => {
-    return (
-      <Marker key={checkin.captured_at} longitude={checkin.lon} latitude={checkin.lat} >
+    if (checkin.lat != undefined) {
+      return (
+        <Marker key={checkin.captured_at} longitude={checkin.lon} latitude={checkin.lat} >
         <div className="station">
-          <span>{moment(checkin.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        <span>{moment(checkin.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
         </div>
-      </Marker>
-    );
+        </Marker>
+      );
+    } else {
+      return (
+        <Marker key="0" longitude="-79.3832" latitude="43.6532" >
+          <div className="station">
+            <span></span>
+          </div>
+        </Marker>
+      );
+    }
   }
 
   onViewportChange = (viewport) => {
@@ -43,7 +66,7 @@ export default class ScavengerHuntStore extends React.Component {
     let latitude = 43.6532;
     let longitude = -79.3832;
 
-    if (ScavengerHuntStore.checkin) {
+    if (ScavengerHuntStore.checkin.lat != undefined) {
       latitude = ScavengerHuntStore.checkin.lat;
       longitude = ScavengerHuntStore.checkin.lon;
     }
@@ -67,7 +90,7 @@ export default class ScavengerHuntStore extends React.Component {
         onViewportChange={this.onViewportChange}
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>
-        { ScavengerHuntStore.checkin.renderMarker }
+        { this.renderMarker(ScavengerHuntStore.checkin) }
       </MapGL>
     );
   }

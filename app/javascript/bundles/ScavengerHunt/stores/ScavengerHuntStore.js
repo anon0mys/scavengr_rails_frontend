@@ -17,9 +17,9 @@ class ScavengerHuntStore {
         this.scavengerHuntApi.subscribeScavengerHunt(scavenger_hunt.user_id, checkin => {
           this.recordCheckin(checkin)
         });
+
+        this.postCheckin();
       })
-      //send location to the server
-      this.postCheckin();
     };
 
   @action recordCheckin = (checkin) => {
@@ -33,7 +33,7 @@ class ScavengerHuntStore {
   @action postCheckin = () => {
     navigator.geolocation.getCurrentPosition(position => {
       this.scavengerHuntApi.postCheckin(
-        this.scavengerHunt.user_id,  //this.scavenger_hunt.user_id?
+        this.scavenger_hunt.user_id,  //this.scavenger_hunt.user_id?
         position.coords.latitude,
         position.coords.longitude,
         position.timestamp

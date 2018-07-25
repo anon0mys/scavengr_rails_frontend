@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   get '/maps/new', to: 'maps#new'
-  get '/maps/:id', to: 'maps#show'
+  get '/maps/:id', to: 'maps#show', as: 'map'
 
   resources :users, only: %i[create]
 
