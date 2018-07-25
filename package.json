@@ -1,5 +1,26 @@
 {
   "name": "scavengr_rails_frontend",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "actioncable": "^5.2.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-preset-react": "^6.24.1",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
+    "punycode": "^2.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-map-gl": "^3.3.2",
+    "react-on-rails": "11.1.0-beta.1",
+    "webpack": "^3.1.0",
+    "webpack-manifest-plugin": "^1.1.2",
+    "webpack-merge": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack-dev-server": "2.11.2"
+  }
 }
