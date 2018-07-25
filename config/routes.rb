@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
   post '/login', to: 'sessions#create'
 
-  get '/maps/new', to: 'maps#new'
   get '/maps/:id', to: 'maps#show', as: 'map'
 
   resources :users, only: %i[create]

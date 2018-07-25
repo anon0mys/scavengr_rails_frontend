@@ -9,7 +9,8 @@ export default class ScavengerHuntForm extends React.Component {
   // When user submits form, call the `createScavengerHunt` action, passing the name.
   handleSubmit = (e) => {
     e.preventDefault();
-    const id = this.idInput.value;
+    const url = window.location.pathname;
+    const id = url.substring(url.lastIndexOf('/') + 1);
     this.props.ScavengerHuntStore.findScavengerHunt(id);
   }
 
@@ -34,8 +35,6 @@ export default class ScavengerHuntForm extends React.Component {
     return (
       <section className="scavenger_hunt-form-container">
         <form onSubmit={e => this.handleSubmit(e)}>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="id" ref={input => this.idInput = input} required/>
           <button type="submit">Start Tracking</button>
         </form>
       </section>

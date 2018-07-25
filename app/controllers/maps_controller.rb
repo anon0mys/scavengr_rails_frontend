@@ -8,9 +8,6 @@ class MapsController < ApplicationController
     render json: scavenger_hunt.to_json
   end
 
-  def new
-  end
-
   private
     def scavenger_hunt_params
       params.permit(:id)
