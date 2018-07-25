@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
-import ScavengerHuntStore from '../stores/ScavengerHuntStore.jsx';
-import NewScavengerHunt from '../components/NewScavengerHunt.jsx';
+import ScavengerHuntStore from '../stores/ScavengerHuntStore';
+import NewScavengerHunt from '../components/NewScavengerHunt';
 
 export default (props, _railsContext) => {
   return (

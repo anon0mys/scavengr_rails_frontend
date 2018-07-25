@@ -10,8 +10,8 @@ class ScavengerHuntStore {
   }
 
   @action findScavengerHunt = (id) => {
-    this.scavengerHuntApi.findScavengerHunt(id).
-      then(scavenger_hunt => {
+    this.scavengerHuntApi.findScavengerHunt(id)
+      .then(scavenger_hunt => {
         this.scavenger_hunt = scavenger_hunt;
 
         this.scavengerHuntApi.subscribeScavengerHunt(scavenger_hunt.user_id, checkin => {
@@ -22,18 +22,18 @@ class ScavengerHuntStore {
       this.postCheckin();
     };
 
-  @action recordCheckin = (checking) => {
+  @action recordCheckin = (checkin) => {
     this.checkin = {
       lat: parseFloat(checkin.lat),
       lon: parseFloat(checkin.lon),
-      captured_at: parseInt(checking.captured_at)
+      captured_at: parseInt(checkin.captured_at)
     };
   }
 
   @action postCheckin = () => {
     navigator.geolocation.getCurrentPosition(position => {
       this.scavengerHuntApi.postCheckin(
-        this.scavengerHunt.user_id,
+        this.scavengerHunt.user_id,  //this.scavenger_hunt.user_id?
         position.coords.latitude,
         position.coords.longitude,
         position.timestamp
