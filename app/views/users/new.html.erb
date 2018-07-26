@@ -6,9 +6,9 @@
   </header>
   <section id="form">
     <%= form_tag users_path, method: :post, class: "form-group" do %>
-      <%= text_field_tag :username, nil, placeholder: :username, required: :true %>
-      <%= email_field_tag :email, nil, placeholder: :email, required: :true %>
-      <%= password_field_tag :password, nil, placeholder: :password, required: :true  %>
+      <%= text_field_tag :username, nil, placeholder: :username, required: :true, autocomplete: :off%>
+      <%= email_field_tag :email, nil, placeholder: :email, required: :true, autocomplete: :off %>
+      <%= password_field_tag :password, nil, placeholder: :password, required: :true, autocomplete: :off, minlength: 8  %>
       <div class="form-buttons">
         <%= submit_tag 'Submit', class: "submit-button" %>
         <%= link_to "Cancel", root_path, class: "form-button" %>

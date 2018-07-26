@@ -6,8 +6,8 @@
   </header>
   <section id="form">
     <%= form_tag login_path, method: :post, class: "form-group" do %>
-      <%= text_field_tag :username, nil, placeholder: :username, required: :true%>
-      <%= password_field_tag :password, nil, placeholder: :password, required: :true %>
+      <%= text_field_tag :username, nil, placeholder: :username, required: :true, autocomplete: :off %>
+      <%= password_field_tag :password, nil, placeholder: :password, required: :true, autocomplete: :off %>
       <div class="form-buttons">
         <%= submit_tag 'Sign in', class: "submit-button" %>
         <%= link_to "Register", create_account_path, class: "form-button" %>
