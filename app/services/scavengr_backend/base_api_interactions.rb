@@ -3,7 +3,7 @@ module ScavengrBackend
     attr_reader :base_url, :user
 
     def initialize(*attrs)
-      @base_url = 'https://scavengr-django.herokuapp.com'
+      @base_url = ENV['BASE_URL']
       @conn = Faraday.new(url: @base_url)
     end
 
