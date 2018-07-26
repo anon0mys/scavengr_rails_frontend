@@ -1,10 +1,7 @@
-module Django
-  class Users
-    attr_reader :base_url
-
+module ScavengrBackend
+  class Users < ScavengrBackend::BaseApiInteractions
     def initialize()
-      @base_url = 'https://scavengr-django.herokuapp.com'
-      @conn = Faraday.new(url: @base_url)
+      super
     end
 
     def create(user)
@@ -18,14 +15,6 @@ module Django
     end
 
     private
-
-    def post(path, payload)
-      @conn.post do |req|
-        req.url path
-        req.headers['Content-Type'] = 'application/json'
-        req.body = payload
-      end
-    end
 
     def user_attributes(user)
       attrs = { username: user.username, email: user.email, password: user.password }

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.new(user_params)
-    service = Django::Users.new()
+    service = ScavengrBackend::Users.new()
     response = service.authenticate(user)
     session[:current_user] = response
     flash[:success] = 'Successfully logged in'

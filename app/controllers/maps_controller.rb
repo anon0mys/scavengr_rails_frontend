@@ -1,7 +1,7 @@
 
 class MapsController < ApplicationController
   def show
-    service = Django::ScavengerHunts.new(current_user)
+    service = ScavengrBackend::ScavengerHunts.new(current_user)
     scavenger_hunt = service.find(scavenger_hunt_params["id"])
     scavenger_hunt.user_id = current_user.id
     scavenger_hunt.username = current_user.username

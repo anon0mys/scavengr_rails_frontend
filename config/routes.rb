@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :users, only: %i[create]
 
   resources :scavenger_hunts
+
+  get '/:username/scavenger_hunts', to: 'user_scavenger_hunts#index', as: 'user_scavenger_hunts'
 end

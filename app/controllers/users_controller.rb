@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    service = Django::Users.new()
+    service = ScavengrBackend::Users.new()
     response = service.create(user)
     session[:current_user] = response
     flash[:success] = 'Your account was created successfully'
