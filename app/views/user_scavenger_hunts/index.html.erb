@@ -1,8 +1,12 @@
-<h2><%= "#{@user.username}'s Scavenger Hunts'" %></h2>
+<h2><%= "#{@username}'s Scavenger Hunts'" %></h2>
 <ul>
   <%= @scavenger_hunts.each do |hunt| %>
     <%= link_to hunt.name, scavenger_hunt_path(hunt.id) %>
     <li><%= hunt.username %></li>
     <li><%= hunt.description %></li>
+    <% if current_user.id == hunt.user_id %>
+      <%= button_to 'Edit', edit_scavenger_hunt_path(hunt.id), method: :get %>
+      <%= button_to 'Delete', scavenger_hunt_path(hunt.id), method: :delete %>
+    <% end %>
   <% end %>
 </ul>
