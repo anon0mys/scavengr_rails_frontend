@@ -60,12 +60,12 @@ main {
 
   .form-buttons {
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr 1fr;
+    grid-template: 1fr 1fr / 1fr 1fr 5px 1fr 1fr;
     width: 100%;
     text-align: center;
 
     .submit-button, .form-button {
-      grid-area: 1 / 1 / 1 / 4;
+      grid-area: 1 / 1 / 4 / 3;
     	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
     	background-color:#768d87;
     	border-radius:10px;
@@ -89,8 +89,8 @@ main {
     }
 
     .form-button{
-      grid-area: 2 / 1 / 2 / 4;
-      padding: 20px 0 0 0;
+      grid-area: 1 / 4 / 4 / 6;
+      padding: 15px 0 0 0;
     }
   }
 }
