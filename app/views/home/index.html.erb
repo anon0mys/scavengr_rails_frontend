@@ -1,11 +1,16 @@
 <main id="home">
+  <header>
+    <div class="logo">
+      scavenger
+    </div>
+  </header>
   <section id="form">
     <%= form_tag login_path, method: :post, class: "form-group" do %>
       <%= text_field_tag :username, nil, placeholder: :username %>
       <%= password_field_tag :password, nil, placeholder: :password %>
       <div class="form-buttons">
-        <%= submit_tag 'Sign in', class: "sign-in" %>
-        <%= link_to "Don't have an account? Register here", create_account_path, class: "create-account" %>
+        <%= submit_tag 'Sign in', class: "submit-button" %>
+        <%= link_to "New to Scavengr? Create an account", create_account_path, class: "form-button" %>
       </div>
     <% end %>
   </section>

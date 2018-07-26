@@ -8,6 +8,23 @@ main {
   grid-template: 1fr 1fr 1fr 1fr 1fr 1fr /  1fr 1fr 1fr 1fr 1fr 1fr;
   background-image: image-url('background.jpg');
   background-repeat: no-repeat;
+
+  header {
+    grid-area: 2 / 2 / 6 / 6;
+    font-family: 'Rock Salt', cursive;
+    color: white;
+    text-align: center;
+
+    .logo {
+      padding: 50px 0 0 0;
+      font-size: 100px;
+    }
+
+    .title {
+      padding: 50px 0 0 0;
+      font-size: 75px;
+    }
+  }
 }
 
 #form {
@@ -26,12 +43,16 @@ main {
 
     input {
       width: 100%;
-      height: 50px;
+      height: 75px;
       margin: 0 0 0px;
       border-radius: 10px;
       text-align: center;
+      font-size: 25px;
     }
 
+    input#email {
+      margin: 2px 0 0 0;
+    }
     input#password {
       margin: 2px 0 10px 0;
     }
@@ -43,7 +64,7 @@ main {
     width: 100%;
     text-align: center;
 
-    .sign-in, .create-account {
+    .submit-button, .form-button {
       grid-area: 1 / 1 / 1 / 4;
     	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
     	background-color:#768d87;
@@ -51,25 +72,25 @@ main {
     	border:1px solid #566963;
     	cursor:pointer;
     	color:#ffffff;
-    	font-size:15px;
+    	font-size:25px;
     	font-weight: bold;
       margin: 0 0 5px 0;
     }
 
-    .sign-in:hover, .create-account:hover  {
+    .submit-button:hover, .form-button:hover  {
     	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
     	background-color:#6c7c7c;
       text-decoration: none;
     }
 
-    .sign-in:active, .create-account:active {
+    .submit-button:active, .form-button:active {
     	position:relative;
     	top: 1px;
     }
 
-    .create-account{
+    .form-button{
       grid-area: 2 / 1 / 2 / 4;
-      padding: 12px 0 0 0;
+      padding: 20px 0 0 0;
     }
   }
 }
