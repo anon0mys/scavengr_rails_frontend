@@ -1,7 +1,17 @@
-<% if @user %>
-  <%= "Logged in as: #{@user.username}" %>
-  <%= link_to 'Log Out', logout_path, method: :delete  %>
-<% else %>
-  <%= link_to 'Create Account', create_account_path %>
-  <%= link_to 'Log In', login_path %>
-<% end %>
+<main id="home">
+  <header>
+    <div class="logo">
+      scavengr
+    </div>
+  </header>
+  <section id="form">
+    <%= form_tag login_path, method: :post, class: "form-group" do %>
+      <%= text_field_tag :username, nil, placeholder: :username, required: :true, autocomplete: :off %>
+      <%= password_field_tag :password, nil, placeholder: :password, required: :true, autocomplete: :off %>
+      <div class="form-buttons">
+        <%= submit_tag 'Sign in', class: "submit-button" %>
+        <%= link_to "Register", create_account_path, class: "form-button" %>
+      </div>
+    <% end %>
+  </section>
+</main>

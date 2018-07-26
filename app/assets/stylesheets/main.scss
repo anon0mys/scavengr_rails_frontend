@@ -1,0 +1,96 @@
+main {
+  width: 100vw;
+  height: 100vh;
+}
+
+#home {
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr /  1fr 1fr 1fr 1fr 1fr 1fr;
+  background-image: image-url('background.jpg');
+  background-repeat: no-repeat;
+
+  header {
+    grid-area: 2 / 2 / 6 / 6;
+    font-family: 'Rock Salt', cursive;
+    color: white;
+    text-align: center;
+
+    .logo {
+      padding: 50px 0 0 0;
+      font-size: 100px;
+    }
+
+    .title {
+      padding: 50px 0 0 0;
+      font-size: 75px;
+    }
+  }
+}
+
+#form {
+  grid-area: 3 / 2 / 6 / 6;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .form-group {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+
+    input {
+      width: 100%;
+      height: 75px;
+      margin: 0 0 0px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 25px;
+    }
+
+    input#email {
+      margin: 2px 0 0 0;
+    }
+    input#password {
+      margin: 2px 0 10px 0;
+    }
+  }
+
+  .form-buttons {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr 5px 1fr 1fr;
+    width: 100%;
+    text-align: center;
+
+    .submit-button, .form-button {
+      grid-area: 1 / 1 / 4 / 3;
+    	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    	background-color:#768d87;
+    	border-radius:10px;
+    	border:1px solid #566963;
+    	cursor:pointer;
+    	color:#ffffff;
+    	font-size:25px;
+    	font-weight: bold;
+      margin: 0 0 5px 0;
+    }
+
+    .submit-button:hover, .form-button:hover  {
+    	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    	background-color:#6c7c7c;
+      text-decoration: none;
+    }
+
+    .submit-button:active, .form-button:active {
+    	position:relative;
+    	top: 1px;
+    }
+
+    .form-button{
+      grid-area: 1 / 4 / 4 / 6;
+      padding: 15px 0 0 0;
+    }
+  }
+}
