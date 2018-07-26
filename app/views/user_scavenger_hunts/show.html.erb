@@ -1,0 +1,13 @@
+<%= @scavenger_hunt.name %>
+<%= button_to 'Edit', edit_scavenger_hunt_path(@scavenger_hunt.id), method: :get %>
+<%= button_to 'Delete', scavenger_hunt_path(@scavenger_hunt.id), method: :delete %>
+<%= @scavenger_hunt.description %>
+<h3>Points</h3>
+<%= button_to 'Add a Point', '#' %>
+<% @points.each do |point| %>
+  <%= point.address %>
+  <%= point.clue %>
+  <%= point.message %>
+  <%= link_to 'Edit', '#' %>
+  <%= link_to 'Delete', '#' %>
+<% end %>

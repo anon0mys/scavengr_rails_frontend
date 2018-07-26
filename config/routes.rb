@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :scavenger_hunts
 
   get '/:username/scavenger_hunts', to: 'user_scavenger_hunts#index', as: 'user_scavenger_hunts'
+  get '/:username/scavenger_hunts/:id', to: 'user_scavenger_hunts#show', as: 'user_scavenger_hunt'
 end
