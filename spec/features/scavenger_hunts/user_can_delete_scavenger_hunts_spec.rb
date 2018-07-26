@@ -8,17 +8,17 @@ feature 'A logged in user' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     service = Django::ScavengerHunts.new(user)
-    response = service.create({ name: 'To be deleted', description: 'Testing the ability to delete' })
+    response = service.create({ name: 'Delete Me', description: 'Testing the ability to delete' })
 
     visit scavenger_hunts_path
 
-    expect(page).to have_content 'To be deleted'
+    expect(page).to have_content 'Delete Me'
 
     visit scavenger_hunt_path(response[:id])
 
     click_on 'Delete'
 
     expect(current_path).to eq(scavenger_hunts_path)
-    expect(page).to_not have_content 'To be deleted'
+    expect(page).to_not have_content 'Delete Me'
   end
 end

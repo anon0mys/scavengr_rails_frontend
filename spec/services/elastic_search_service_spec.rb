@@ -30,7 +30,6 @@ describe ElasticService do
 
       query_results = service.all_points
 
-      expect(query_results.length).to eql 1
       expect(query_results.first).to be_a Point
       expect(query_results.first.message).to eql "Test adding point"
     end
