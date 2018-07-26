@@ -1,10 +1,7 @@
 module ScavengrBackend
-  class ScavengerHunts
-    attr_reader :base_url, :user
-
+  class ScavengerHunts < ScavengrBackend::BaseApiInteractions
     def initialize(user)
-      @base_url = 'https://scavengr-django.herokuapp.com'
-      @conn = Faraday.new(url: @base_url)
+      super
       @user = user
     end
 
@@ -33,41 +30,6 @@ module ScavengrBackend
 
     def destroy(id)
       delete("/api/v1/scavenger_hunts/#{id}")
-    end
-
-    private
-
-    def get(path)
-      @conn.get do |req|
-        req.url path
-        req.headers['Authorization'] = "Token #{user.token}"
-      end
-    end
-
-    def post(path, payload)
-      @conn.post do |req|
-        req.url path
-        req.headers['Content-Type'] = 'application/json'
-        req.headers['Authorization'] = "Token #{user.token}"
-        req.body = payload
-      end
-    end
-
-    def put(path, payload)
-      @conn.put do |req|
-        req.url path
-        req.headers['Content-Type'] = 'application/json'
-        req.headers['Authorization'] = "Token #{user.token}"
-        req.body = payload
-      end
-    end
-
-    def delete(path)
-      @conn.delete do |req|
-        req.url path
-        req.headers['Content-Type'] = 'application/json'
-        req.headers['Authorization'] = "Token #{user.token}"
-      end
     end
   end
 end
