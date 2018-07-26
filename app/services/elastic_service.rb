@@ -7,7 +7,6 @@ class ElasticService
   end
 
   def add_point(point)
-    binding.pry
     @client.create index: 'points',
                    type: '_doc',
                    body: point.to_json

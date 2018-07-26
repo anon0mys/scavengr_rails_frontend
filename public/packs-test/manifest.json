@@ -1,0 +1,10 @@
+{
+  "application.js": "/packs-test/application-0a433b1d2f5fe1f2d457.js",
+  "application.js.map": "/packs-test/application-0a433b1d2f5fe1f2d457.js.map",
+  "hello-world-bundle.js": "/packs-test/hello-world-bundle-02ed2def946ac3c8c164.js",
+  "hello-world-bundle.js.map": "/packs-test/hello-world-bundle-02ed2def946ac3c8c164.js.map",
+  "hello_react.js": "/packs-test/hello_react-d31d479faf8fc6f82c80.js",
+  "hello_react.js.map": "/packs-test/hello_react-d31d479faf8fc6f82c80.js.map",
+  "scavenger-hunt-bundle.js": "/packs-test/scavenger-hunt-bundle-b3b5e401cd9abdebaee2.js",
+  "scavenger-hunt-bundle.js.map": "/packs-test/scavenger-hunt-bundle-b3b5e401cd9abdebaee2.js.map"
+}
