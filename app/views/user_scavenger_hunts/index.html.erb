@@ -1,6 +1,6 @@
 <h2><%= "#{@username}'s Scavenger Hunts'" %></h2>
 <ul>
-  <%= @scavenger_hunts.each do |hunt| %>
+  <% @scavenger_hunts.each do |hunt| %>
     <%= link_to hunt.name, scavenger_hunt_path(hunt.id) %>
     <li><%= hunt.username %></li>
     <li><%= hunt.description %></li>
