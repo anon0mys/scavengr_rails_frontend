@@ -1,4 +1,4 @@
-module Django
+module ScavengrBackend
   class Users
     attr_reader :base_url
 

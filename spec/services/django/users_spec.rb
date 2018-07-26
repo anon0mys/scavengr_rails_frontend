@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe Django::Users do
+describe ScavengrBackend::Users do
   it 'initializes with base attributes' do
-    service = Django::Users.new()
+    service = ScavengrBackend::Users.new()
 
     expect(service.base_url).to eq('https://scavengr-django.herokuapp.com')
   end
@@ -11,7 +11,7 @@ describe Django::Users do
     it 'POST to django /api/v1/users/' do
       user_attrs = { username: 'test', email: 'test@mail.com', password: 'password' }
       user = User.new(user_attrs)
-      service = Django::Users.new()
+      service = ScavengrBackend::Users.new()
 
       expected = { id: 1, username: 'test', email: 'test@mail.com', token: 'token' }
 
@@ -27,7 +27,7 @@ describe Django::Users do
     it 'POST to django /api/v1/users/authenticate/' do
       user_attrs = { username: 'test', password: 'password' }
       user = User.new(user_attrs)
-      service = Django::Users.new()
+      service = ScavengrBackend::Users.new()
 
       expected = { id: 1, username: 'test', email: 'test@mail.com', token: 'token' }
 
