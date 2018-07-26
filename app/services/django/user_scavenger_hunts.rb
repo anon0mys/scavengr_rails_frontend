@@ -2,16 +2,15 @@ module Django
   class UserScavengerHunts
     attr_reader :base_url, :user
 
-    def initialize(current_user, user_id)
+    def initialize(current_user, username)
       @base_url = 'https://scavengr-django.herokuapp.com'
       @conn = Faraday.new(url: @base_url)
       @user = current_user
-      @user_id = user_id
+      @username = username
     end
 
     def find_all
-      response = get("/api/v1/users/#{@user_id}/scavenger_hunts/")
-      binding.pry
+      response = get("/api/v1/users/#{@username}/scavenger_hunts/")
       hunts = JSON.parse(response.body, symbolize_names: true)
       hunts.map do |hunt|
         ScavengerHunt.new(hunt)
