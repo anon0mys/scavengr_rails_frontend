@@ -20,7 +20,7 @@ feature 'A visitor' do
       click_on 'Submit'
 
       expect(current_path).to eq(root_path)
-      # expect(page).to have_content('Logged in as: test')
+      expect(page).to have_content('test')
       # expect(page).to have_content('Log Out')
     end
   end
