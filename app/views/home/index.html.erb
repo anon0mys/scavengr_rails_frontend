@@ -1,17 +1,35 @@
-<main id="home">
-  <header>
-    <div class="logo">
-      scavengr
-    </div>
-  </header>
-  <section id="form">
-    <%= form_tag login_path, method: :post, class: "form-group" do %>
-      <%= text_field_tag :username, nil, placeholder: :username, required: :true, autocomplete: :off %>
-      <%= password_field_tag :password, nil, placeholder: :password, required: :true, autocomplete: :off %>
-      <div class="form-buttons">
-        <%= submit_tag 'Sign in', class: "submit-button" %>
-        <%= link_to "Register", create_account_path, class: "form-button" %>
+<% if current_user %>
+  <main id="dashboard">
+    <nav>
+       <div class="username">
+         <%= current_user.username %>
+       </div>
+    </nav>
+    <%= link_to 'My Scavenger Hunts', user_scavenger_hunts_path(username: current_user.username), { id: "dash-button1", class: "form-button" } %>
+    <%= link_to 'Create a Scavenger Hunt', new_scavenger_hunt_path, { id: "dash-button2", class: "form-button" } %>
+    <%= link_to 'Current Scavenger Hunts', '#', { id: "dash-button3", class: "form-button" } %>
+    <%= link_to 'Scavenger Hunt Search', scavenger_hunts_path, { id: "dash-button4", class: "form-button" } %>
+    <footer>
+      <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home' %>
+      <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out' %>
+    </footer>
+  </main>
+<% else %>
+  <main id="home">
+    <header>
+      <div class="logo">
+        scavengr
       </div>
-    <% end %>
-  </section>
-</main>
+    </header>
+    <section id="form">
+      <%= form_tag login_path, method: :post, class: "form-group" do %>
+        <%= text_field_tag :username, nil, placeholder: :username, required: :true, autocomplete: :off %>
+        <%= password_field_tag :password, nil, placeholder: :password, required: :true, autocomplete: :off %>
+        <div class="form-buttons">
+          <%= submit_tag 'Sign in', class: "submit-button" %>
+          <%= link_to "Register", create_account_path, class: "form-button" %>
+        </div>
+      <% end %>
+    </section>
+  </main>
+<% end %>
