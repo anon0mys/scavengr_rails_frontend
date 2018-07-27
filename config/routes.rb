@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[create]
 
-  resources :scavenger_hunts
+  resources :scavenger_hunts do
+    resources :points, only: %i[new create]
+  end
+
 
   get '/:username/scavenger_hunts', to: 'user_scavenger_hunts#index', as: 'user_scavenger_hunts'
   get '/:username/scavenger_hunts/:id', to: 'user_scavenger_hunts#show', as: 'user_scavenger_hunt'

@@ -3,7 +3,7 @@
 <%= button_to 'Delete', scavenger_hunt_path(@scavenger_hunt.id), method: :delete %>
 <%= @scavenger_hunt.description %>
 <h3>Points</h3>
-<%= button_to 'Add a Point', '#' %>
+<%= button_to 'Add a Point', new_scavenger_hunt_point_path(@scavenger_hunt.id), method: :get %>
 <% @points.each do |point| %>
   <%= point.address %>
   <%= point.clue %>
