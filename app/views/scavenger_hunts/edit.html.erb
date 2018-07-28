@@ -1,8 +1,34 @@
-<%= form_for @scavenger_hunt, method: :put, url: scavenger_hunt_path(@scavenger_hunt.id) do |f| %>
+<main id="scavenger-hunt-new-edit">
+  <nav>
+     <div class="username">
+       <%= current_user.username %>
+     </div>
+  </nav>
+  <header>
+    Edit Scavenger Hunt: <%= @scavenger_hunt.name %>
+  </header>
+  <div class="scavenger-hunt-form">
+    <%= form_for @scavenger_hunt, method: :put, url: scavenger_hunt_path(@scavenger_hunt.id) do |f| %>
+      <%= f.text_field :name, placeholder: :name, required: :true, autocomplete: :off %>
+      <%= f.text_area :description, placeholder: :description, required: :true, autocomplete: :off%>
+    <div class="form-buttons">
+      <%= f.submit 'Update Scavenger Hunt', class: "submit-button" %>
+      <%= link_to "Cancel", root_path, class: "form-button" %>
+    </div>
+    <% end %>
+  </div>
+  <footer>
+    <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home', title: 'Home' %>
+    <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
+  </footer>
+</main>
+
+
+<!-- <%= form_for @scavenger_hunt, method: :put, url: scavenger_hunt_path(@scavenger_hunt.id) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :description %>
   <%= f.text_field :description %>
 
   <%= f.submit 'Update Scavenger Hunt' %>
-<% end %>
+<% end %> -->

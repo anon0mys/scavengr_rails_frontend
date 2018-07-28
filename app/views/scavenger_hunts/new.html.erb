@@ -1,4 +1,4 @@
-<main id="new-scavenger-hunt">
+<main id="scavenger-hunt-new-edit">
   <nav>
      <div class="username">
        <%= current_user.username %>
@@ -7,7 +7,7 @@
   <header>
     Create a New Scavenger Hunt
   </header>
-  <div class="new-form">
+  <div class="scavenger-hunt-form">
     <%= form_for @scavenger_hunt do |f| %>
       <%= f.text_field :name, placeholder: :name, required: :true, autocomplete: :off %>
       <%= f.text_area :description, placeholder: :description, required: :true, autocomplete: :off%>
