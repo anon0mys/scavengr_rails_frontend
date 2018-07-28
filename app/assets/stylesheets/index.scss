@@ -19,27 +19,35 @@
     .scavenger-hunt-card {
       display: grid;
       grid-template: 125px /  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      padding-top: 5%;
-      margin-top: 1%;
+      padding-top: 2.5%;
+      margin-top: 4%;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
       list-style: none;
       background-color: lightgrey;
 
-      .card-left {
-        grid-area: 1 / 1 / 1 / 7;
+      a {
+        grid-area: 1 / 1 / 1 / 9;
+        text-decoration: none;
+        color: black;
+
+        .card-left {
+          .card-title {
+            font-size: 1.75em;
+          }
+        }
       }
 
       .edit-btn {
         grid-area: 1 / 7 / 1 / 7;
-        padding-top: 10%;
-        font-size: 1.5em;
+        padding-top: 20%;
+        font-size: 2em;
         color: yellow;
       }
 
       .delete-btn {
         grid-area: 1 / 8 / 1 / 8;
-        padding-top: 10%;
-        font-size: 1.5em;
+        padding-top: 20%;
+        font-size: 2em;
         color: red;
       }
     }

@@ -1,16 +1,19 @@
 <main id="index">
   <nav>
      <div class="username">
-       <%= "#{@username}'s Scavenger Hunts'" %>
+       <%= "#{@username}'s Scavenger Hunts" %>
      </div>
   </nav>
   <div class='cards-container'>
     <% @scavenger_hunts.each do |hunt| %>
     <ul class='scavenger-hunt-card'>
-      <div class="card-left">
-        <%= link_to hunt.name, scavenger_hunt_path(hunt.id) %>
-        <li>Description: <%= hunt.description %></li>
-      </div>
+      <a href="/scavenger_hunts/<%= hunt.id %>">
+        <div class="card-left">
+          <span class='card-title'><%= hunt.name %></span>
+          <li>Creator: <%= hunt.user_id %></li>
+          <li>Description: <%= hunt.description %></li>
+        </div>
+      </a>
       <% if current_user.id == hunt.user_id %>
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_scavenger_hunt_path(hunt.id), method: :get, class: 'edit-btn' %>
         <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn' %>
