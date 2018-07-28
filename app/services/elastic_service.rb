@@ -9,7 +9,7 @@ class ElasticService
   def add_point(point)
     @client.create index: 'points',
                    type: '_doc',
-                   body: build_point(point).to_json
+                   body: point.to_json
   end
 
   def all_points()
@@ -78,14 +78,5 @@ class ElasticService
     results.map do |result|
       Point.new(result['_source']['point'])
     end
-  end
-
-  def build_point(point)
-    { point: {
-        message: point.message,
-        scavenger_hunt_id: point.scavenger_hunt_id,
-        location: point.location
-      }
-    }
   end
 end

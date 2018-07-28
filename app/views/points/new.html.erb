@@ -8,7 +8,9 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
+        .new-point-container { display:flex; flex-direction:column; padding:2%; }
+        #map { position:absolute; top:25%; bottom:25%; right:0; width:50%; }
+        #form { position: absolute; top:25%; bottom:25%; left:0; width:50%; }
     </style>
 </head>
 <body>
@@ -21,9 +23,23 @@
     margin-left:25%;
 }
 </style>
-<div id='map'></div>
+<div class="new-point-container">
+  <div id='form'>
+    <h2>Create a Point</h2>
+    <form action="/action_page.php">
+      Clue: <input type="text" name="clue" required><br>
+      Message: <input type="text" name="message" required><br>
+      Address: <input type="text" name="address" disabled><br>
+      <input type="hidden" id="coordinates" name="coordinates" value="">
+      <input type="submit" id="new-point-btn" value="Add Point">
+    </form>
+  </div>
+  <div id='map'></div>
+</div>
+
 
 <script>
+
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWRlYWx0eXBpY2FsIiwiYSI6ImNqazBjcG1tZDA1ZjIzcHFsY3NzeDZjbGUifQ.TKZIYgbzt9g7HVfScLh2cg';
 var map = new mapboxgl.Map({
@@ -63,10 +79,49 @@ map.on('load', function() {
     // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
     // makes a selection and add a symbol that matches the result.
     geocoder.on('result', function(ev) {
-        console.log(ev.result)
-        map.getSource('single-point').setData(ev.result.geometry);
+        let location = map.getSource('single-point').setData(ev.result.geometry);
+        address = $('input[placeholder="Search"]').val();
+        $('input[name="coordinates"]').val(location._data.coordinates);
+        $('input[name="address"]').val(address);
     });
 });
+
+$(document).ready(() => {
+  $("#new-point-btn").on("click", addPoint);
+});
+
+
+function addPoint(event) {
+  event.preventDefault()
+  let url = window.location.pathname;
+  let scavenger_hunt_id = url.split('/')[2];
+  point = buildPoint(scavenger_hunt_id)
+  fetch(`/scavenger_hunts/${scavenger_hunt_id}/points`, {
+    "method": 'POST',
+    credentials: "same-origin",
+    "body": JSON.stringify(point)
+  })
+  .then(response => response.json())
+  .then((data) => {
+    debugger
+    if (data.status == 201) {
+
+    } else {
+
+    }
+  })
+}
+
+function buildPoint(scavenger_hunt_id) {
+  return { "point": {
+      "scavenger_hunt_id": scavenger_hunt_id,
+      "clue": $('input[name="clue"]').val(),
+      "message": $('input[name="message"]').val(),
+      "address": $('input[name="address"]').val(),
+      "location": $('input[name="coordinates"]').val().split(',')
+    }
+  }
+}
 </script>
 
 </body>
