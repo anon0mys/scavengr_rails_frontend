@@ -1,0 +1,49 @@
+#index {
+  display: grid;
+  grid-template: 100px 150px 1fr 1fr 1fr 1fr 1fr 100px/  1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: lightgrey;
+
+  nav {
+    grid-area: 1 / 1 / 2 / 7;
+
+    .username {
+      grid-area: 1 / 2 / 1 / 5;
+    }
+  }
+
+  .cards-container {
+    grid-area:  2 / 2 / 9 / 6;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    background-color: lightgrey;
+
+    .scavenger-hunt-card {
+      display: grid;
+      grid-template: 125px /  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      padding-top: 5%;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+      list-style: none;
+
+      .card-left {
+        grid-area: 1 / 1 / 1 / 6;
+      }
+
+      .edit-btn {
+        grid-area: 1 / 7 / 1 / 7;
+        padding-top: 10%;
+        font-size: 1.5em;
+      }
+
+      .delete-btn {
+        grid-area: 1 / 8 / 1 / 8;
+        padding-top: 10%;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  footer {
+    grid-area: 8 / 1 / 9 / 7;
+  }
+}
