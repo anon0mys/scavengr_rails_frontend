@@ -12,8 +12,8 @@
         <li>Description: <%= hunt.description %></li>
       </div>
       <% if current_user.id == hunt.user_id %>
-        <%= link_to '<i class="fa fa-pencil-square aria-hidden="true""></i>'.html_safe, edit_scavenger_hunt_path(hunt.id), method: :get, class: 'edit-btn' %>
-        <%= link_to '<i class="fa fa-trash aria-hidden="true""></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn' %>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_scavenger_hunt_path(hunt.id), method: :get, class: 'edit-btn' %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn' %>
       <% end %>
     </ul>
     <% end %>

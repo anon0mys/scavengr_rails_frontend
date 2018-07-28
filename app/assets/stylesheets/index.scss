@@ -1,7 +1,6 @@
 #index {
   display: grid;
   grid-template: 100px 150px 1fr 1fr 1fr 1fr 1fr 100px/  1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: lightgrey;
 
   nav {
     grid-area: 1 / 1 / 2 / 7;
@@ -15,35 +14,39 @@
     grid-area:  2 / 2 / 9 / 6;
     display: flex;
     flex-direction: column;
-    margin-top: 5%;
-    background-color: lightgrey;
+    overflow: auto;
 
     .scavenger-hunt-card {
       display: grid;
       grid-template: 125px /  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       padding-top: 5%;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+      margin-top: 1%;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
       list-style: none;
+      background-color: lightgrey;
 
       .card-left {
-        grid-area: 1 / 1 / 1 / 6;
+        grid-area: 1 / 1 / 1 / 7;
       }
 
       .edit-btn {
         grid-area: 1 / 7 / 1 / 7;
         padding-top: 10%;
         font-size: 1.5em;
+        color: yellow;
       }
 
       .delete-btn {
         grid-area: 1 / 8 / 1 / 8;
         padding-top: 10%;
         font-size: 1.5em;
+        color: red;
       }
     }
   }
 
   footer {
     grid-area: 8 / 1 / 9 / 7;
+    z-index: 100;
   }
 }
