@@ -19,7 +19,7 @@ export default class ScavengerHuntStore extends React.Component {
         longitude: -79.3832,
         zoom: 16,
         bearing: 0,
-        pitch: 50,
+        pitch: 0,
         width: window.innerWidth,
         height: window.innerHeight
       },
@@ -86,7 +86,7 @@ export default class ScavengerHuntStore extends React.Component {
       <MapGL
         {...viewport}
         {...this.state.settings}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/idealtypical/cjk33bhe12wnn2stfsbt36uzl"
         onViewportChange={this.onViewportChange}
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>
