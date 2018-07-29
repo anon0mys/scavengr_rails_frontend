@@ -6,8 +6,8 @@ class ElasticService
     @client = Elasticsearch::Client.new
   end
 
-  def add_point(point)
-    @client.create index: 'points',
+  def add_point(point, index)
+    @client.create index: index,
                    type: '_doc',
                    body: point
   end

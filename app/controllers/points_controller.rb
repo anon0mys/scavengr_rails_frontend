@@ -9,7 +9,7 @@ class PointsController < ApplicationController
     scavenger_hunt = service.find(params[:scavenger_hunt_id])
     if scavenger_hunt.user_id == current_user.id
       elastic = ElasticService.new(scavenger_hunt.id)
-      elastic.add_point(point_params)
+      elastic.add_point(point_params, 'points')
       render json: {message: 'Success'}, status: 201
     else
       render json: {message: 'Failure'}, status: 401

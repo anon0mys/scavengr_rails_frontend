@@ -15,18 +15,19 @@ describe ElasticService do
       scavenger_hunt_id = 2
       service = ElasticService.new(scavenger_hunt_id)
 
-      point_attrs = {
-                      message: "Test adding point",
-                  		scavenger_hunt_id: 2,
-                  		location: {
-                  			lat: 40.12,
-                        lon: -70.34
-                  	  }
+      point_attrs = { point: {
+                        message: "Test adding point",
+                        clue: 'test clue',
+                        address: '123 test address',
+                    		scavenger_hunt_id: 2,
+                    		location: {
+                    			lat: 40.12,
+                          lon: -70.34
+                    	  }
+                      }
                     }
 
-      point = Point.new(point_attrs)
-
-      service.add_point(point)
+      service.add_point(point_attrs, 'point')
 
       query_results = service.all_points
 
