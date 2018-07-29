@@ -1,15 +1,15 @@
 class ElasticService
-  attr_reader :client
+  attr_reader :client, :scavenger_hunt_id
 
   def initialize(scavenger_hunt_id)
     @scavenger_hunt_id = scavenger_hunt_id
     @client = Elasticsearch::Client.new
   end
 
-  def add_point(point, index)
+  def add_point(point_attrs, index)
     @client.create index: index,
                    type: '_doc',
-                   body: point
+                   body: point_attrs
   end
 
   def all_points()
@@ -33,14 +33,10 @@ class ElasticService
                            body: {
                              query: {
                                bool: {
-                                 must: {
-                                   match: {
-                                     'user_point.scavenger_hunt_id' => @scavenger_hunt_id
-                                   },
-                                   match: {
-                                     'user_point.user_id' => user_id
-                                   }
-                                 }
+                                 must: [
+                                   { match: {'user_point.scavenger_hunt_id' => @scavenger_hunt_id}},
+                                   { match: {'user_point.user_id' => user_id}}
+                                 ]
                                }
                              }
                            }

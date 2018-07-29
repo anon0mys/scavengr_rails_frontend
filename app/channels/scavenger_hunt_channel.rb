@@ -2,11 +2,7 @@ class ScavengerHuntChannel < ApplicationCable::Channel
   # called when user first subscribes
   # we can define where their information is "broadcast" from
   def subscribed
-    # find all user_hunt_points
     create_user_points if user_points.empty?
-    binding.pry
-    # if there are none find all points from scavenger hunt
-    # create user_hunt_points (user_id, scavenger_hunt_id, found(bool), location, message, clue, address)
     stream_from "scavenger_hunt_#{params[:scavengerHuntId]}_user_#{params[:userId]}"
   end
 
@@ -24,14 +20,23 @@ class ScavengerHuntChannel < ApplicationCable::Channel
 
   private
 
-  def user_points(user_id)
-    client.all_user_points(user_id)
+  def user_points
+    client.all_user_points(params[:userId])
   end
 
-  def create_user_points(u)
+  def create_user_points # Push this down to service layer
+    scavenger_hunt_points.each do |point|
+      point.user_id, point.found = params[:userId], false
+      point_attrs = { user_point: point}
+      client.add_point(point_attrs.to_json, 'user_points')
+    end
   end
 
   def client
-    @client ||= ElasticService.new(scavenger_hunt_id)
+    @client ||= ElasticService.new(params[:scavengerHuntId])
+  end
+
+  def scavenger_hunt_points
+    @scavenger_hunt_points ||= client.all_points
   end
 end
