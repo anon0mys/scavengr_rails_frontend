@@ -9,12 +9,12 @@ class ScavengerHuntStore {
     this.scavengerHuntApi = new ScavengerHuntApi();
   }
 
-  @action findScavengerHunt = (id) => {
+  @action findScavengerHunt = (id, userId) => {
     this.scavengerHuntApi.findScavengerHunt(id)
       .then(scavenger_hunt => {
         this.scavenger_hunt = scavenger_hunt;
 
-        this.scavengerHuntApi.subscribeScavengerHunt(scavenger_hunt.user_id, checkin => {
+        this.scavengerHuntApi.subscribeScavengerHunt(id, userId, checkin => {
           this.recordCheckin(checkin)
         });
 

@@ -4,4 +4,4 @@
 
 <%= link_to 'Delete', scavenger_hunt_path(@scavenger_hunt.id), method: :delete %>
 
-<%= react_component('NewScavengerHuntContainer', props: {}, prerender: false) %>
+<%= react_component('NewScavengerHuntContainer', props: {user_id: current_user.id}, prerender: false) %>

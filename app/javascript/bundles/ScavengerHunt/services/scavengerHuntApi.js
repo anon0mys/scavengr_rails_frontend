@@ -11,10 +11,11 @@ export default class ScavengerHuntApi {
       .then(response => response.json())
   }
 
-  subscribeScavengerHunt = (user_id, callback) => {
+  subscribeScavengerHunt = (id, userId, callback) => {
     this.subscription = this.cable.subscriptions.create({
       channel: "ScavengerHuntChannel",
-      room: user_id
+      userId: userId,
+      scavengerHuntId: id
     }, {
       received: callback
     });

@@ -6,7 +6,7 @@ export default class NewScavengerHunt extends React.Component {
   render() {
     return (
       <div>
-        <ScavengerHuntForm />
+        <ScavengerHuntForm {...this.props} />
         <ScavengerHuntMap />
       </div>
     )
