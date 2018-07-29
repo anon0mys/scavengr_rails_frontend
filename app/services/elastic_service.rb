@@ -9,7 +9,7 @@ class ElasticService
   def add_point(point)
     @client.create index: 'points',
                    type: '_doc',
-                   body: point.to_json
+                   body: point
   end
 
   def all_points()

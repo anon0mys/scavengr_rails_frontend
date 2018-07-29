@@ -97,9 +97,9 @@ function addPoint(event) {
   let scavenger_hunt_id = url.split('/')[2];
   point = buildPoint(scavenger_hunt_id)
   fetch(`/scavenger_hunts/${scavenger_hunt_id}/points`, {
-    "method": 'POST',
+    method: 'POST',
     credentials: "same-origin",
-    "body": JSON.stringify(point)
+    body: JSON.stringify(point)
   })
   .then(response => response.json())
   .then((data) => {
@@ -113,12 +113,12 @@ function addPoint(event) {
 }
 
 function buildPoint(scavenger_hunt_id) {
-  return { "point": {
-      "scavenger_hunt_id": scavenger_hunt_id,
-      "clue": $('input[name="clue"]').val(),
-      "message": $('input[name="message"]').val(),
-      "address": $('input[name="address"]').val(),
-      "location": $('input[name="coordinates"]').val().split(',')
+  return { point: {
+      scavenger_hunt_id: scavenger_hunt_id,
+      clue: $('input[name="clue"]').val(),
+      message: $('input[name="message"]').val(),
+      address: $('input[name="address"]').val(),
+      location: $('input[name="coordinates"]').val().split(',').map(coord => parseFloat(coord))
     }
   }
 }
