@@ -1,12 +1,28 @@
-<h2><%= "#{@username}'s Scavenger Hunts'" %></h2>
-<ul>
-  <% @scavenger_hunts.each do |hunt| %>
-    <%= link_to hunt.name, scavenger_hunt_path(hunt.id) %>
-    <li><%= hunt.username %></li>
-    <li><%= hunt.description %></li>
-    <% if current_user.id == hunt.user_id %>
-      <%= button_to 'Edit', edit_scavenger_hunt_path(hunt.id), method: :get %>
-      <%= button_to 'Delete', scavenger_hunt_path(hunt.id), method: :delete %>
+<main id="index">
+  <nav>
+     <div class="username">
+       <%= "#{@username}'s Scavenger Hunts" %>
+     </div>
+  </nav>
+  <div class='cards-container'>
+    <% @scavenger_hunts.each do |hunt| %>
+    <ul class='scavenger-hunt-card'>
+      <a href="/scavenger_hunts/<%= hunt.id %>">
+        <div class="card-left">
+          <span class='card-title'><%= hunt.name %></span>
+          <li>Creator: <%= hunt.user_id %></li>
+          <li>Description: <%= hunt.description %></li>
+        </div>
+      </a>
+      <% if current_user.id == hunt.user_id %>
+        <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_scavenger_hunt_path(hunt.id), method: :get, class: 'edit-btn' %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn' %>
+      <% end %>
+    </ul>
     <% end %>
-  <% end %>
-</ul>
+  </div>
+  <footer>
+    <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home', title: 'Home' %>
+    <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
+  </footer>
+</main>

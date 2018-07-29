@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Scavenger Hunt 1",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 2,
+        "name": "Scavenger Hunt 2",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 3,
+        "name": "Scavenger Hunt 3",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 4,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 5,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 6,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 7,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 8,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 9,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    },
+    {
+        "id": 10,
+        "name": "Scavenger Hunt",
+        "description": "Testing the ability to add hunts",
+        "user_id": 1,
+        "username": "test"
+    }
+]
