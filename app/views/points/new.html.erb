@@ -23,6 +23,7 @@
     margin-left:25%;
 }
 </style>
+<div class="flash-message"></div>
 <div class="new-point-container">
   <div id='form'>
     <h2>Create a Point</h2>
@@ -101,14 +102,23 @@ function addPoint(event) {
     credentials: "same-origin",
     body: JSON.stringify(point)
   })
-  .then(response => response.json())
-  .then((data) => {
-    debugger
-    if (data.status == 201) {
-
+  .then(response => {
+    if(response.ok) {
+      return response.json()
     } else {
-
+      throw new Error('Failed')
     }
+  })
+  .then((data) => {
+    $(".flash-message").html("<p>Successfully added new point</p>");
+    $('input[name="clue"]').val("");
+    $('input[name="message"]').val("");
+    $('input[name="address"]').val("");
+    $('input[name="coordinates"]').val("");
+    $('input[placeholder="Search"]').val("")
+  })
+  .catch(error => {
+    $(".flash-message").html("<p>Failed to create point</p>")
   })
 }
 
