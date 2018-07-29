@@ -20,19 +20,42 @@ describe ElasticService do
                         clue: 'test clue',
                         address: '123 test address',
                     		scavenger_hunt_id: 2,
-                    		location: {
-                    			lat: 40.12,
-                          lon: -70.34
-                    	  }
+                    		location: [40.12, -70.34]
                       }
                     }
 
-      service.add_point(point_attrs, 'point')
+      service.add_point(point_attrs, 'points')
 
       query_results = service.all_points
 
-      expect(query_results.first).to be_a Point
-      expect(query_results.first.message).to eql "Test adding point"
+      expect(query_results.last).to be_a Point
+      expect(query_results.last.message).to eql "Test adding point"
+    end
+  end
+
+  context 'user_points' do
+    it 'can add a user point to the index' do
+      scavenger_hunt_id = 2
+      user_id = 1
+      service = ElasticService.new(scavenger_hunt_id)
+
+      point_attrs = { user_point: {
+                        message: "Test adding user point",
+                        clue: 'test clue',
+                        address: '123 test address',
+                    		scavenger_hunt_id: scavenger_hunt_id,
+                        user_id: user_id,
+                        found: false,
+                    		location: [40.12, -70.34]
+                      }
+                    }
+
+      service.add_point(point_attrs, 'user_points')
+
+      query_results = service.all_user_points(user_id)
+
+      expect(query_results.first).to be_a UserPoint
+      expect(query_results.first.message).to eql "Test adding user point"
     end
   end
 

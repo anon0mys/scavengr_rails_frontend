@@ -28,6 +28,25 @@ class ElasticService
     convert_to_points(query['hits']['hits'])
   end
 
+  def all_user_points(user_id)
+    query = @client.search index: 'user_points',
+                           body: {
+                             query: {
+                               bool: {
+                                 must: {
+                                   match: {
+                                     'user_point.scavenger_hunt_id' => @scavenger_hunt_id
+                                   },
+                                   match: {
+                                     'user_point.user_id' => user_id
+                                   }
+                                 }
+                               }
+                             }
+                           }
+    convert_to_user_points(query['hits']['hits'])
+  end
+
   def within_radius(location, radius)
     query = @client.search index: 'points',
                            body: {
@@ -77,6 +96,12 @@ class ElasticService
   def convert_to_points(results)
     results.map do |result|
       Point.new(result['_source']['point'])
+    end
+  end
+
+  def convert_to_user_points(results)
+    results.map do |result|
+      UserPoint.new(result['_source']['user_point'])
     end
   end
 end
