@@ -30,7 +30,6 @@ class ElasticService
 
   def find_or_create_user_points(user_id)
     create_user_points(user_id) if all_user_points(user_id).empty?
-    require 'pry'; binding.pry
     return all_user_points(user_id)
   end
 
