@@ -12,7 +12,7 @@ class ElasticService
                    body: point_attrs
   end
 
-  def all_points()
+  def all_points
     query = @client.search index: 'points',
                            body: {
                              query: {
@@ -26,6 +26,11 @@ class ElasticService
                              }
                            }
     convert_to_points(query['hits']['hits'])
+  end
+
+  def find_or_create_user_points(user_id)
+    create_user_points(user_id) if all_user_points(user_id).empty?
+    return all_user_points(user_id)
   end
 
   def all_user_points(user_id)
@@ -89,15 +94,23 @@ class ElasticService
 
   private
 
-  def convert_to_points(results)
-    results.map do |result|
-      Point.new(result['_source']['point'])
+    def create_user_points(user_id)
+      all_points.each do |point|
+        point.user_id, point.found = user_id, false
+        point_attrs = { user_point: point}
+        add_point(point_attrs.to_json, 'user_points')
+      end
     end
-  end
 
-  def convert_to_user_points(results)
-    results.map do |result|
-      UserPoint.new(result['_source']['user_point'])
+    def convert_to_points(results)
+      results.map do |result|
+        Point.new(result['_source']['point'])
+      end
     end
-  end
+
+    def convert_to_user_points(results)
+      results.map do |result|
+        UserPoint.new(result['_source']['user_point'])
+      end
+    end
 end
