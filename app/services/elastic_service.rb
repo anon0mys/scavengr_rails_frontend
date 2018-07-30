@@ -48,48 +48,46 @@ class ElasticService
     convert_to_user_points(query['hits']['hits'])
   end
 
-  def within_radius(location, radius)
-    query = @client.search index: 'points',
+  def within_radius(location, user_id,  radius = "250ft")
+    query = @client.search index: 'user_points',
                            body: {
                              query: {
                                bool: {
-                                 must: {
-                                   match: {
-                                     'point.scavenger_hunt_id' => @scavenger_hunt_id
-                                   }
-                                 },
+                                 must: [
+                                   { match: {'user_point.scavenger_hunt_id' => @scavenger_hunt_id}},
+                                   { match: {'user_point.user_id' => user_id}}
+                                 ],
                                  filter: {
                                    geo_distance: {
                                      distance: radius,
-                                     'point.location' => location
+                                     'user_point.location' => location
                                    }
                                  }
                                }
                              }
                            }
-    convert_to_points(query['hits']['hits'])
+    convert_to_user_points(query['hits']['hits'])
   end
 
-  def outside_radius(location, radius)
-    query = @client.search index: 'points',
+  def outside_radius(location, user_id, radius = "250ft")
+    query = @client.search index: 'user_points',
                            body: {
                              query: {
                                bool: {
-                                 must: {
-                                   match: {
-                                     'point.scavenger_hunt_id' => @scavenger_hunt_id
-                                   }
-                                 },
+                                 must: [
+                                   { match: {'user_point.scavenger_hunt_id' => @scavenger_hunt_id}},
+                                   { match: {'user_point.user_id' => user_id}}
+                                 ],
                                  must_not: {
                                    geo_distance: {
                                      distance: radius,
-                                     'point.location' => location
+                                     'user_point.location' => location
                                    }
                                  }
                                }
                              }
                            }
-    convert_to_points(query['hits']['hits'])
+    convert_to_user_points(query['hits']['hits'])
   end
 
   private
