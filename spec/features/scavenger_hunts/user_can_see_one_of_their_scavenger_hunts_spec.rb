@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'A logged in user' do
+feature 'A logged in user', elasticsearch: true do
   context 'on their own scavenger_hunt show page' do
     scenario 'can see their scavenger hunt' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)

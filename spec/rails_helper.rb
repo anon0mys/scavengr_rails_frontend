@@ -38,8 +38,8 @@ RSpec.configure do |config|
   ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)
 
   config.before(:each) do
-    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE scavengerhunts_scavengerhunt RESTART IDENTITY'"
-    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE auth_user RESTART IDENTITY CASCADE'"
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE scavengerhunts_scavengerhunt RESTART IDENTITY' &>/dev/null"
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE auth_user RESTART IDENTITY CASCADE' &>/dev/null"
     user = User.new(email: 'test@test.com', password: 'password', username: 'test')
     service = ScavengrBackend::Users.new()
     response = service.create(user)
@@ -47,8 +47,8 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE scavengerhunts_scavengerhunt RESTART IDENTITY'"
-    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE auth_user RESTART IDENTITY CASCADE'"
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE scavengerhunts_scavengerhunt RESTART IDENTITY' &>/dev/null"
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE auth_user RESTART IDENTITY CASCADE' &>/dev/null"
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
