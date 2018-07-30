@@ -37,6 +37,20 @@ RSpec.configure do |config|
   # This will use the defaults of :js and :server_rendering meta tags
   ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)
 
+  config.before(:each) do
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE scavengerhunts_scavengerhunt RESTART IDENTITY'"
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE auth_user RESTART IDENTITY CASCADE'"
+    user = User.new(email: 'test@test.com', password: 'password', username: 'test')
+    service = ScavengrBackend::Users.new()
+    response = service.create(user)
+    @user = User.new(response)
+  end
+
+  config.after(:each) do
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE scavengerhunts_scavengerhunt RESTART IDENTITY'"
+    system "psql -d scavengr_django_backend -c 'TRUNCATE TABLE auth_user RESTART IDENTITY CASCADE'"
+  end
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
