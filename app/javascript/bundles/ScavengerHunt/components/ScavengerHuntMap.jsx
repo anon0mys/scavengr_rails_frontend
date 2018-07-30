@@ -15,8 +15,8 @@ export default class ScavengerHuntStore extends React.Component {
 
     this.state = {
       viewport: {
-        latitude: 43.6532,
-        longitude: -79.3832,
+        latitude: 39.7392,
+        longitude: -104.9903,
         zoom: 16,
         bearing: 0,
         pitch: 0,
@@ -48,7 +48,7 @@ export default class ScavengerHuntStore extends React.Component {
       );
     } else {
       return (
-        <Marker key="0" longitude="-79.3832" latitude="43.6532" >
+        <Marker key="0" longitude="-104.9903" latitude="39.7392" >
           <div className="station">
             <span></span>
           </div>
