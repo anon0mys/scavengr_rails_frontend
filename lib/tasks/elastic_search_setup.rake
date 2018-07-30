@@ -34,7 +34,7 @@ namespace :elasticsearch do
                               mappings: {
                                 _doc: {
                                   properties: {
-                                    point: {
+                                    user_point: {
                                       properties: {
                                         location: {
                                             type: "geo_point"
