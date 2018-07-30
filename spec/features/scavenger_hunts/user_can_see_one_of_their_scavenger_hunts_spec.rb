@@ -1,25 +1,27 @@
 require 'rails_helper'
 
-feature 'A logged in user' do
+feature 'A logged in user', elasticsearch: true do
   context 'on their own scavenger_hunt show page' do
     scenario 'can see their scavenger hunt' do
-      attrs = { id: 1, username: 'test', email: 'test@mail.com', token: '56963da5d3ab5155ae8f40fc3612f3a1986a5f38' }
-      user = User.new(attrs)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      scavenger_hunt = ScavengerHunt.new(name: 'Isyo hunt', description: 'Go on a nacho hunt')
+      service = ScavengrBackend::ScavengerHunts.new(@user)
+      service.create(scavenger_hunt)
 
       visit '/test/scavenger_hunts/1'
 
       expect(current_path).to eq '/test/scavenger_hunts/1'
-      expect(page).to have_content 'Changed'
-      expect(page).to have_content 'Found the point'
+      expect(page).to have_content 'Isyo hunt'
+      expect(page).to have_content 'Go on a nacho hunt'
     end
 
     scenario 'can add a point to their scavenger hunt' do
-      attrs = { id: 1, username: 'test', email: 'test@mail.com', token: '56963da5d3ab5155ae8f40fc3612f3a1986a5f38' }
-      user = User.new(attrs)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      scavenger_hunt = ScavengerHunt.new(name: 'Test Scavenger Hunt', description: 'Testing the ability to add hunts')
+      service = ScavengrBackend::ScavengerHunts.new(@user)
+      service.create(scavenger_hunt)
 
       visit '/test/scavenger_hunts/1'
 
@@ -31,14 +33,20 @@ feature 'A logged in user' do
 
   context 'when they navigate to another user\'s /username/scavenger_hunts/:id' do
     scenario 'they are redirected to /scavenger_hunts/:id' do
-      attrs = { id: 1, username: 'test', email: 'test@mail.com', token: '56963da5d3ab5155ae8f40fc3612f3a1986a5f38' }
-      user = User.new(attrs)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      user = User.new(email: 'different_user@test.com', password: 'password', username: 'different_user')
+      service = ScavengrBackend::Users.new()
+      response = service.create(user)
+      user = User.new(response)
 
-      visit '/user_2/scavenger_hunts/162'
+      scavenger_hunt = ScavengerHunt.new(name: 'Nacho Hunt', description: 'This is not your hunt')
+      service = ScavengrBackend::ScavengerHunts.new(user)
+      service.create(scavenger_hunt)
 
-      expect(current_path).to eq '/scavenger_hunts/162'
+      visit '/different_user/scavenger_hunts/1'
+
+      expect(current_path).to eq '/scavenger_hunts/1'
     end
   end
 end
