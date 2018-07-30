@@ -82,7 +82,7 @@ export default class ScavengerHuntStore extends React.Component {
   }
 
   onViewportChange = (viewport) => {
-    this.state({viewport});
+    this.setState({viewport});
   }
 
   viewport = () => {
