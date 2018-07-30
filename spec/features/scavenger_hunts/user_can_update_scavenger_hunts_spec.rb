@@ -4,6 +4,10 @@ feature 'A logged in user' do
   scenario 'can edit a scavenger hunt' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
+    scavenger_hunt = ScavengerHunt.new(name: 'Isyo hunt', description: 'Go on a nacho hunt')
+    service = ScavengrBackend::ScavengerHunts.new(@user)
+    service.create(scavenger_hunt)
+
     visit edit_scavenger_hunt_path(1)
 
     fill_in 'scavenger_hunt[name]', with: 'Changed'

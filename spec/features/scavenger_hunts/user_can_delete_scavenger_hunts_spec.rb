@@ -4,7 +4,7 @@ feature 'A logged in user' do
   scenario 'can delete a scavenger hunt' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-    service = ScavengrBackend::ScavengerHunts.new(user)
+    service = ScavengrBackend::ScavengerHunts.new(@user)
     response = service.create({ name: 'Delete Me', description: 'Testing the ability to delete' })
 
     visit scavenger_hunts_path
