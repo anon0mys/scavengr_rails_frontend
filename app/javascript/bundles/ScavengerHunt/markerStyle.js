@@ -27,4 +27,10 @@ export default `
 .station:hover span {
   display: inline-block;
 }
+.out-of-range:before {
+  background: red;
+}
+.within-range:before {
+  background: green;
+}
 `;
