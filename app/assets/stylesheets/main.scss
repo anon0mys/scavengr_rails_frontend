@@ -41,7 +41,7 @@ html, body, main {
   }
 
   footer {
-    grid-area: 8 / 1 / 9 / 7;
+    grid-area: 8 / 1 / 8 / 7;
   }
 
   .form-button {
@@ -200,6 +200,7 @@ footer {
   display: grid;
   grid-template: 1fr / 75px 1fr 1fr 1fr 75px;
   background-color: darkgrey;
+  height: 100%;
   padding: 0 0 12px 0;
 
   .footer-button {
