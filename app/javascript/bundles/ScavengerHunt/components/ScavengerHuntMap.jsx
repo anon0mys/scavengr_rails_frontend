@@ -88,18 +88,18 @@ export default class ScavengerHuntStore extends React.Component {
 
   viewport = () => {
     const {ScavengerHuntStore} = this.props;
-    let latitude = 43.6532;
-    let longitude = -79.3832;
-
-    if (ScavengerHuntStore.checkin.lat != undefined) {
-      latitude = ScavengerHuntStore.checkin.lat;
-      longitude = ScavengerHuntStore.checkin.lon;
-    }
+    // let latitude = 43.6532;
+    // let longitude = -79.3832;
+    //
+    // if (ScavengerHuntStore.checkin.lat != undefined) {
+    //   latitude = ScavengerHuntStore.checkin.lat;
+    //   longitude = ScavengerHuntStore.checkin.lon;
+    // }
 
     return {
-      ...this.state.viewport,
-      latitude,
-      longitude
+      ...this.state.viewport
+      // latitude,
+      // longitude
     };
   }
 
