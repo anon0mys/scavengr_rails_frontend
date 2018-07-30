@@ -62,7 +62,7 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station out-of-range">
-        <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        <span>{point.clue}</span>
         </div>
         </Marker>
       );
@@ -74,7 +74,8 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station within-range">
-        <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        <span>{point.message}</span>
+        <button type="button">Found!</button>
         </div>
         </Marker>
       );
