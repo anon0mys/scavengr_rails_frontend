@@ -43,7 +43,7 @@ class ScavengerHuntStore {
 
       setTimeout(() => {
         this.postCheckin();
-      }, 500);
+      }, 1000);
     });
   }
 }

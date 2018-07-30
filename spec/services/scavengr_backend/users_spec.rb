@@ -4,19 +4,16 @@ describe ScavengrBackend::Users do
   it 'initializes with base attributes' do
     service = ScavengrBackend::Users.new()
 
-    expect(service.base_url).to eq('https://scavengr-django.herokuapp.com')
+    expect(service.base_url).to eq('http://localhost:8080')
   end
 
   context 'endpoints' do
     it 'POST to django /api/v1/users/' do
-      user_attrs = { username: 'test', email: 'test@mail.com', password: 'password' }
+      user_attrs = { username: 'user', email: 'user@mail.com', password: 'password' }
       user = User.new(user_attrs)
       service = ScavengrBackend::Users.new()
 
-      expected = { id: 1, username: 'test', email: 'test@mail.com', token: 'token' }
-
-      stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users/')
-      .to_return(status: 201, body: expected.to_json)
+      expected = { id: 2, username: 'user', email: 'user@mail.com', token: 'token' }
 
       response = service.create(user)
 
@@ -30,9 +27,6 @@ describe ScavengrBackend::Users do
       service = ScavengrBackend::Users.new()
 
       expected = { id: 1, username: 'test', email: 'test@mail.com', token: 'token' }
-
-      # stub_request(:post, 'https://scavengr-django.herokuapp.com/api/v1/users/')
-      # .to_return(status: 201, body: expected.to_json)
 
       response = service.authenticate(user)
 

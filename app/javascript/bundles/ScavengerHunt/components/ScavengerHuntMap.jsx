@@ -15,8 +15,8 @@ export default class ScavengerHuntStore extends React.Component {
 
     this.state = {
       viewport: {
-        latitude: 43.6532,
-        longitude: -79.3832,
+        latitude: 39.7392,
+        longitude: -104.9903,
         zoom: 16,
         bearing: 0,
         pitch: 0,
@@ -48,7 +48,7 @@ export default class ScavengerHuntStore extends React.Component {
       );
     } else {
       return (
-        <Marker key="0" longitude="-79.3832" latitude="43.6532" >
+        <Marker key="0" longitude="-104.9903" latitude="39.7392" >
           <div className="station">
             <span></span>
           </div>
@@ -62,7 +62,7 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station out-of-range">
-        <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        <span>{point.clue}</span>
         </div>
         </Marker>
       );
@@ -74,7 +74,8 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station within-range">
-        <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        <span>{point.message}</span>
+        <button type="button">Found!</button>
         </div>
         </Marker>
       );
@@ -87,18 +88,18 @@ export default class ScavengerHuntStore extends React.Component {
 
   viewport = () => {
     const {ScavengerHuntStore} = this.props;
-    let latitude = 43.6532;
-    let longitude = -79.3832;
-
-    if (ScavengerHuntStore.checkin.lat != undefined) {
-      latitude = ScavengerHuntStore.checkin.lat;
-      longitude = ScavengerHuntStore.checkin.lon;
-    }
+    // let latitude = 43.6532;
+    // let longitude = -79.3832;
+    //
+    // if (ScavengerHuntStore.checkin.lat != undefined) {
+    //   latitude = ScavengerHuntStore.checkin.lat;
+    //   longitude = ScavengerHuntStore.checkin.lon;
+    // }
 
     return {
-      ...this.state.viewport,
-      latitude,
-      longitude
+      ...this.state.viewport
+      // latitude,
+      // longitude
     };
   }
 
