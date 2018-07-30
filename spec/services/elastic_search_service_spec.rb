@@ -34,7 +34,7 @@ describe ElasticService, elasticsearch: true do
   end
 
   context 'user_points' do
-    it 'can add a user point to the index' do
+    xit 'can add a user point to the index' do
       scavenger_hunt_id = 2
       user_id = 1
       service = ElasticService.new(scavenger_hunt_id)
