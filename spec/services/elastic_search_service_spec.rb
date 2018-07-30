@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ElasticService do
+describe ElasticService, elasticsearch: true do
   context 'attributes' do
     it 'initializes with an elastic search client' do
       scavenger_hunt_id = 1
@@ -11,7 +11,7 @@ describe ElasticService do
   end
 
   context 'points' do
-    it 'can add a point to the index' do
+    xit 'can add a point to the index' do
       scavenger_hunt_id = 2
       service = ElasticService.new(scavenger_hunt_id)
 
@@ -60,7 +60,7 @@ describe ElasticService do
   end
 
   context 'queries' do
-    it 'can find all points' do
+    xit 'can find all points' do
       scavenger_hunt_id = 1
       service = ElasticService.new(scavenger_hunt_id)
 
@@ -71,7 +71,7 @@ describe ElasticService do
       expect(query_results.first.message).to eql "Shouldn't find this one"
     end
 
-    it 'can find points within set distance of a location' do
+    xit 'can find points within set distance of a location' do
       scavenger_hunt_id = 1
       service = ElasticService.new(scavenger_hunt_id)
 
@@ -85,7 +85,7 @@ describe ElasticService do
       expect(query_results.first.message).to eql "Found the point"
     end
 
-    it 'can find points outside set distance of a location' do
+    xit 'can find points outside set distance of a location' do
       scavenger_hunt_id = 1
       service = ElasticService.new(scavenger_hunt_id)
 
