@@ -58,11 +58,22 @@ export default class ScavengerHuntStore extends React.Component {
   }
 
   renderOutOfRange = (point) => {
-    debugger
     if (point.location != undefined) {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
-        <div className="station">
+        <div className="station out-of-range">
+        <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        </div>
+        </Marker>
+      );
+    }
+  }
+
+  renderWithinRange = (point) => {
+    if (point.location != undefined) {
+      return (
+        <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
+        <div className="station within-range">
         <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
         </div>
         </Marker>
@@ -104,6 +115,7 @@ export default class ScavengerHuntStore extends React.Component {
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>
         { ScavengerHuntStore.checkin.pointsOutside.map(this.renderOutOfRange) }
+        { ScavengerHuntStore.checkin.pointsWithin.map(this.renderWithinRange) }
         { this.renderMarker(ScavengerHuntStore.checkin) }
       </MapGL>
     );
