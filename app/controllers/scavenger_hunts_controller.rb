@@ -13,7 +13,7 @@ class ScavengerHuntsController < ApplicationController
     service = ScavengrBackend::ScavengerHunts.new(current_user)
     response = service.create(scavenger_hunt)
     flash[:success] = "Scavenger hunt #{response[:name]} created successfully"
-    redirect_to scavenger_hunts_path
+    redirect_to "/#{current_user.username}/scavenger_hunts/#{response[:id]}"
   end
 
   def show
@@ -32,7 +32,7 @@ class ScavengerHuntsController < ApplicationController
     service = ScavengrBackend::ScavengerHunts.new(current_user)
     response = service.update(scavenger_hunt)
     flash[:success] = "Scavenger hunt #{response[:name]} updated successfully"
-    redirect_to scavenger_hunt_path(response[:id])
+    redirect_to "/#{current_user.username}/scavenger_hunts/#{response[:id]}"
   end
 
   def destroy
