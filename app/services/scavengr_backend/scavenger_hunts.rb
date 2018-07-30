@@ -15,6 +15,7 @@ module ScavengrBackend
 
     def find(id)
       response = get("/api/v1/scavenger_hunts/#{id}")
+      binding.pry
       ScavengerHunt.new(JSON.parse(response.body, symbolize_names: true))
     end
 

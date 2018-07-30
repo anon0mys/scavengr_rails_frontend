@@ -6,7 +6,7 @@ describe ScavengrBackend::ScavengerHunts do
     user = User.new(user_attrs)
     service = ScavengrBackend::ScavengerHunts.new(user)
 
-    expect(service.base_url).to eql('https://scavengr-django.herokuapp.com')
+    expect(service.base_url).to eql('http://localhost:8080')
     expect(service.user).to eql(user)
   end
 end
