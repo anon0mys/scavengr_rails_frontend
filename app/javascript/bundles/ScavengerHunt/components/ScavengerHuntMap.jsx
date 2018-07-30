@@ -96,10 +96,10 @@ export default class ScavengerHuntStore extends React.Component {
     }
   }
 
-  renderFound = (point) => {
-    if (point.location != undefined) {
-      return (
-        <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
+renderFound = (point) => {
+  if (point.location != undefined) {
+    return (
+      <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station found">
           <span>
             <i><b>POINT FOUND</b></i><br/>
@@ -108,10 +108,10 @@ export default class ScavengerHuntStore extends React.Component {
             Address: {point.address}
           </span>
         </div>
-        </Marker>
-      );
-    }
+      </Marker>
+    );
   }
+}
 
   onViewportChange = (viewport) => {
     this.setState({viewport});
