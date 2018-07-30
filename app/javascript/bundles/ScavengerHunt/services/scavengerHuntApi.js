@@ -21,9 +21,9 @@ export default class ScavengerHuntApi {
     });
   }
 
-  postCheckin = (user_id, lat, lon, captured_at) => {
+  postCheckin = (userId, lat, lon, captured_at) => {
     this.subscription.send({
-      user_id,
+      userId,
       lat,
       lon,
       captured_at

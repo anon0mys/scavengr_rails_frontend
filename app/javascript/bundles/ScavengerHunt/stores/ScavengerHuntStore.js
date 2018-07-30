@@ -3,7 +3,7 @@ import ScavengerHuntApi from '../services/scavengerHuntApi';
 
 class ScavengerHuntStore {
   @observable scavenger_hunt = {};
-  @observable checkin = {};
+  @observable checkin = { pointsWithin: [], pointsOutside: []};
 
   constructor() {
     this.scavengerHuntApi = new ScavengerHuntApi();
@@ -24,6 +24,8 @@ class ScavengerHuntStore {
 
   @action recordCheckin = (checkin) => {
     this.checkin = {
+      pointsWithin: checkin.in_range,
+      pointsOutside: checkin.outside_range,
       lat: parseFloat(checkin.lat),
       lon: parseFloat(checkin.lon),
       captured_at: parseInt(checkin.captured_at)
@@ -33,7 +35,7 @@ class ScavengerHuntStore {
   @action postCheckin = () => {
     navigator.geolocation.getCurrentPosition(position => {
       this.scavengerHuntApi.postCheckin(
-        this.scavenger_hunt.user_id,  //this.scavenger_hunt.user_id?
+        this.scavenger_hunt.user_id,
         position.coords.latitude,
         position.coords.longitude,
         position.timestamp

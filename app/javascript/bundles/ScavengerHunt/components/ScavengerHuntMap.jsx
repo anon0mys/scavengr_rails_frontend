@@ -57,6 +57,19 @@ export default class ScavengerHuntStore extends React.Component {
     }
   }
 
+  renderOutOfRange = (point) => {
+    debugger
+    if (point.location != undefined) {
+      return (
+        <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
+        <div className="station">
+        <span>{moment(point.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        </div>
+        </Marker>
+      );
+    }
+  }
+
   onViewportChange = (viewport) => {
     this.setState({viewport});
   }
@@ -90,6 +103,7 @@ export default class ScavengerHuntStore extends React.Component {
         onViewportChange={this.onViewportChange}
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>
+        { ScavengerHuntStore.checkin.pointsOutside.map(this.renderOutOfRange) }
         { this.renderMarker(ScavengerHuntStore.checkin) }
       </MapGL>
     );
