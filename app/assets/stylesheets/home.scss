@@ -1,0 +1,23 @@
+#home {
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr 1fr 1fr /  1fr 1fr 1fr 1fr 1fr 1fr;
+  background-image: image-url('background.jpg');
+  background-repeat: no-repeat;
+
+  header {
+    grid-area: 2 / 2 / 6 / 6;
+    font-family: 'Rock Salt', cursive;
+    color: white;
+    text-align: center;
+
+    .logo {
+      padding: 50px 0 0 0;
+      font-size: 100px;
+    }
+
+    .title {
+      padding: 50px 0 0 0;
+      font-size: 75px;
+    }
+  }
+}
