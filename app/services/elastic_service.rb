@@ -12,6 +12,13 @@ class ElasticService
                    body: point_attrs
   end
 
+  def update_point(point_id, index)
+    @client.update index: index,
+                   type: '_doc',
+                   id: point_id,
+                   body: { doc: { user_point: { found: true } }}
+  end
+
   def all_points
     query = @client.search index: 'points',
                            body: {
@@ -102,13 +109,17 @@ class ElasticService
 
     def convert_to_points(results)
       results.map do |result|
-        Point.new(result['_source']['point'])
+        point = Point.new(result['_source']['point'])
+        point.id = result['_id']
+        point
       end
     end
 
     def convert_to_user_points(results)
       results.map do |result|
-        UserPoint.new(result['_source']['user_point'])
+        point = UserPoint.new(result['_source']['user_point'])
+        point.id = result['_id']
+        point
       end
     end
 end

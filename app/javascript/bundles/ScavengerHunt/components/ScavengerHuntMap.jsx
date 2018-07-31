@@ -69,13 +69,21 @@ export default class ScavengerHuntStore extends React.Component {
     }
   }
 
+  updatePoint = (point) => {
+    fetch(`/user_points/${point.id}`, {
+      method: "PATCH",
+      credentials: "same-origin",
+      body: JSON.stringify(point)
+    })
+  }
+
   renderWithinRange = (point) => {
     if (point.location != undefined) {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station within-range">
         <span>{point.message}</span>
-        <button type="button">Found!</button>
+        <button type="button" onClick={() => {this.updatePoint(point)}}>Found!</button>
         </div>
         </Marker>
       );
