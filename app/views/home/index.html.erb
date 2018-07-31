@@ -7,7 +7,7 @@
     </nav>
     <%= link_to 'My Scavenger Hunts', user_scavenger_hunts_path(username: current_user.username), { id: "dash-button1", class: "form-button" } %>
     <%= link_to 'Create a Scavenger Hunt', new_scavenger_hunt_path, { id: "dash-button2", class: "form-button" } %>
-    <%= link_to 'Current Scavenger Hunts', '#', { id: "dash-button3", class: "form-button" } %>
+    <%= link_to 'Current Scavenger Hunts', current_scavenger_hunts_path, { id: "dash-button3", class: "form-button" } %>
     <%= link_to 'Scavenger Hunt Search', scavenger_hunts_path, { id: "dash-button4", class: "form-button" } %>
     <footer>
       <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home', title: 'Home' %>
