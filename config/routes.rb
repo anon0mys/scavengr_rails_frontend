@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[create]
 
+  resources :current_scavenger_hunts, only: %i[index]
+
   resources :scavenger_hunts do
     resources :points, only: %i[new create]
   end
