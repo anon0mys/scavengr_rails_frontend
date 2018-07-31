@@ -33,4 +33,7 @@ export default `
 .within-range:before {
   background: green;
 }
+.found:before {
+  background: blue;
+}
 `;

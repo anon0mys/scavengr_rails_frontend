@@ -90,6 +90,22 @@ export default class ScavengerHuntStore extends React.Component {
     }
   }
 
+  renderFound = (point) => {
+    if (point.location != undefined) {
+      return (
+        <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
+        <div className="station found">
+        <span>
+          Clue: {point.clue}<br/>
+          Message: {point.message}<br/>
+          Address: {point.address}
+        </span>
+        </div>
+        </Marker>
+      );
+    }
+  }
+
   onViewportChange = (viewport) => {
     this.setState({viewport});
   }
@@ -123,6 +139,7 @@ export default class ScavengerHuntStore extends React.Component {
         onViewportChange={this.onViewportChange}
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>
+        { ScavengerHuntStore.checkin.found.map(this.renderFound) }
         { ScavengerHuntStore.checkin.pointsOutside.map(this.renderOutOfRange) }
         { ScavengerHuntStore.checkin.pointsWithin.map(this.renderWithinRange) }
         { this.renderMarker(ScavengerHuntStore.checkin) }

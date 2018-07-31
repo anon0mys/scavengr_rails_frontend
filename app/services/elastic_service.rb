@@ -19,6 +19,8 @@ class ElasticService
                    body: { doc: { user_point: { found: true } }}
   end
 
+  # ADD found points query and add must_not match point.found = true to within and outside queries
+
   def all_points
     query = @client.search index: 'points',
                            body: {
@@ -55,6 +57,22 @@ class ElasticService
     convert_to_user_points(query['hits']['hits'])
   end
 
+  def found_points(user_id)
+    query = @client.search index: 'user_points',
+                           body: {
+                             query: {
+                               bool: {
+                                 must: [
+                                   { match: {'user_point.scavenger_hunt_id' => @scavenger_hunt_id}},
+                                   { match: {'user_point.user_id' => user_id}},
+                                   { match: {'user_point.found' => true}}
+                                 ]
+                               }
+                             }
+                           }
+    convert_to_user_points(query['hits']['hits'])
+  end
+
   def within_radius(location, user_id,  radius = "250ft")
     query = @client.search index: 'user_points',
                            body: {
@@ -62,7 +80,8 @@ class ElasticService
                                bool: {
                                  must: [
                                    { match: {'user_point.scavenger_hunt_id' => @scavenger_hunt_id}},
-                                   { match: {'user_point.user_id' => user_id}}
+                                   { match: {'user_point.user_id' => user_id}},
+                                   { match: {'user_point.found' => false}}
                                  ],
                                  filter: {
                                    geo_distance: {
@@ -83,7 +102,8 @@ class ElasticService
                                bool: {
                                  must: [
                                    { match: {'user_point.scavenger_hunt_id' => @scavenger_hunt_id}},
-                                   { match: {'user_point.user_id' => user_id}}
+                                   { match: {'user_point.user_id' => user_id}},
+                                   { match: {'user_point.found' => false}}
                                  ],
                                  must_not: {
                                    geo_distance: {
