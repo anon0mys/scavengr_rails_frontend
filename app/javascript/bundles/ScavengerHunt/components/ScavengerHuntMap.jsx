@@ -87,9 +87,9 @@ export default class ScavengerHuntStore extends React.Component {
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station within-range">
           <span>Clue: {point.clue}<br/>
-                Address: {point.address}
+                Address: {point.address}<br/>
+                <button type="button" onClick={() => {this.updatePoint(point)}}>Found!</button>
           </span>
-        <button type="button" onClick={() => {this.updatePoint(point)}}>Found!</button>
         </div>
         </Marker>
       );
