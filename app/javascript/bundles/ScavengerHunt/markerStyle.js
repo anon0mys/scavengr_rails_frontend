@@ -2,19 +2,19 @@ export default `
 .station:before {
   content: ' ';
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 35px;
+  height: 35px;
   background: #18FFFF;
-  border-radius: 10px;
-  margin: 0 8px;
+  border-radius: 35px;
+  margin: 0 12px 35px 0;
+  vertical-align: top;
 }
 .station {
   border-radius: 20px;
-  padding-right: 12px;
-  margin: -12px;
+  padding: 12px 20px 12px 12px;
   color: transparent;
-  line-height: 24px;
-  font-size: 13px;
+  line-height: 40px;
+  font-size: 30px;
   white-space: nowrap;
 }
 .station span {
@@ -23,6 +23,7 @@ export default `
 .station:hover {
   background: rgba(0,0,0,0.8);
   color: #fff;
+
 }
 .station:hover span {
   display: inline-block;

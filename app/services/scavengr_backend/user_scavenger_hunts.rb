@@ -15,8 +15,8 @@ module ScavengrBackend
     end
 
     def add_current_scavenger_hunt(scavenger_hunt_id)
-      response = post("/api/v1/current_scavenger_hunts/", { scavenger_hunt_id: scavenger_hunt_id })
-      JSON.parse(response.body, symbolize_names: true)
+      payload = { scavenger_hunt_id: scavenger_hunt_id }
+      response = post("/api/v1/current_scavenger_hunts/", payload.to_json)
     end
 
     def current_scavenger_hunts

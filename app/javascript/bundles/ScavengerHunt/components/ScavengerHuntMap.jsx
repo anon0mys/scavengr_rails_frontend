@@ -41,16 +41,20 @@ export default class ScavengerHuntStore extends React.Component {
     if (checkin.lat != undefined) {
       return (
         <Marker key={checkin.captured_at} longitude={checkin.lon} latitude={checkin.lat} >
-        <div className="station">
-        <span>{moment(checkin.captured_at).format('MMMM Do YYYY, h:mm:ss a')}</span>
+        <div className="station marker-style">
+          <span>Lat: {checkin.lat}<br/>
+                Lon: {checkin.lon}
+          </span>
         </div>
         </Marker>
       );
     } else {
       return (
         <Marker key="0" longitude="-104.9903" latitude="39.7392" >
-          <div className="station">
-            <span></span>
+          <div className="station marker-style">
+            <span>Lat: -104.9903<br/>
+                  Lon: 39.7392
+            </span>
           </div>
         </Marker>
       );
@@ -62,7 +66,7 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station out-of-range">
-        <span>{point.clue}</span>
+        <span>Clue: {point.clue}</span>
         </div>
         </Marker>
       );
@@ -82,7 +86,9 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station within-range">
-        <span>{point.message}</span>
+          <span>Clue: {point.clue}<br/>
+                Address: {point.address}
+          </span>
         <button type="button" onClick={() => {this.updatePoint(point)}}>Found!</button>
         </div>
         </Marker>
@@ -95,11 +101,11 @@ export default class ScavengerHuntStore extends React.Component {
       return (
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station found">
-        <span>
-          Clue: {point.clue}<br/>
-          Message: {point.message}<br/>
-          Address: {point.address}
-        </span>
+          <span>
+            Clue: {point.clue}<br/>
+            Message: {point.message}<br/>
+            Address: {point.address}
+          </span>
         </div>
         </Marker>
       );
