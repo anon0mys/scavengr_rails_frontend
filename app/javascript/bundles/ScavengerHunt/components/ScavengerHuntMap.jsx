@@ -15,8 +15,8 @@ export default class ScavengerHuntStore extends React.Component {
 
     this.state = {
       viewport: {
-        latitude: 39.7392,
-        longitude: -104.9903,
+        latitude: 39.750759,
+        longitude: -104.996536,
         zoom: 16,
         bearing: 0,
         pitch: 0,
