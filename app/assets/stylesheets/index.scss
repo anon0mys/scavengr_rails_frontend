@@ -24,7 +24,7 @@
       box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
       list-style: none;
       background-color: lightgrey;
-      height: 375px;
+      min-height: 375px;
 
       a {
         grid-area: 1 / 1 / 1 / 9;
