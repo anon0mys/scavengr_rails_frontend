@@ -27,8 +27,8 @@ class ScavengerHuntStore {
       found: checkin.found,
       pointsWithin: checkin.in_range,
       pointsOutside: checkin.outside_range,
-      lat: parseFloat(checkin.lat),
-      lon: parseFloat(checkin.lon),
+      lat: checkin.lat,
+      lon: checkin.lon,
       captured_at: parseInt(checkin.captured_at)
     };
   }
