@@ -38,7 +38,14 @@ class ElasticService
   end
 
   def find_or_create_user_points(user_id)
-    create_user_points(user_id) if all_user_points(user_id).empty?
+    if all_user_points(user_id).length != all_points.length
+      user_point_ids = all_user_points(user_id).map { | user_point | user_point.point_id }
+      all_points.each do | point |
+        if !user_point_ids.include?(point.id)
+          create_user_point(user_id, point)
+        end
+      end
+    end
     return all_user_points(user_id)
   end
 
@@ -119,12 +126,10 @@ class ElasticService
 
   private
 
-    def create_user_points(user_id)
-      all_points.each do |point|
-        point.user_id, point.found = user_id, false
-        point_attrs = { user_point: point}
+    def create_user_point(user_id, point)
+        point.point_id, point.user_id, point.found = point.id, user_id, false
+        point_attrs = { user_point: point }
         add_point(point_attrs.to_json, 'user_points')
-      end
     end
 
     def convert_to_points(results)

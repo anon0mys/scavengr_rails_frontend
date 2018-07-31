@@ -24,9 +24,7 @@ export default class ScavengerHuntForm extends React.Component {
 
       return (
         <section className="scavenger_hunt-form-container">
-          <p>
-            Joined <strong>{ScavengerHuntStore.scavenger_hunt.name}</strong>
-          </p>
+          <form></form>
         </section>
       )
     }
@@ -35,7 +33,7 @@ export default class ScavengerHuntForm extends React.Component {
     return (
       <section className="scavenger_hunt-form-container">
         <form onSubmit={e => this.handleSubmit(e)}>
-          <button type="submit">Start Tracking</button>
+          <button type="submit">Start Hunting</button>
         </form>
       </section>
     )
