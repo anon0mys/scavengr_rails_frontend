@@ -5,7 +5,7 @@ import ScavengerHuntMap from './ScavengerHuntMap';
 export default class NewScavengerHunt extends React.Component {
   render() {
     return (
-      <div>
+      <div class="scavenger-hunt-container">
         <ScavengerHuntForm {...this.props} />
         <ScavengerHuntMap />
       </div>

@@ -24,9 +24,7 @@ export default class ScavengerHuntForm extends React.Component {
 
       return (
         <section className="scavenger_hunt-form-container">
-          <p>
-            Joined <strong>{ScavengerHuntStore.scavenger_hunt.name}</strong>
-          </p>
+          <form></form>
         </section>
       )
     }

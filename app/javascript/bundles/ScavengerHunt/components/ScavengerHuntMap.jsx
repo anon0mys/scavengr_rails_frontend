@@ -21,7 +21,7 @@ export default class ScavengerHuntStore extends React.Component {
         bearing: 0,
         pitch: 0,
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight * .843
       },
       settings: {
         dragPan: true,
@@ -88,7 +88,7 @@ export default class ScavengerHuntStore extends React.Component {
         <div className="station within-range">
           <span>Clue: {point.clue}<br/>
                 Address: {point.address}<br/>
-                <button type="button" onClick={() => {this.updatePoint(point)}}>Found!</button>
+                <button type="button" onClick={() => {this.updatePoint(point)}}><b>Mark as Found</b></button>
           </span>
         </div>
         </Marker>
@@ -102,6 +102,7 @@ export default class ScavengerHuntStore extends React.Component {
         <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
         <div className="station found">
           <span>
+            <i><b>POINT FOUND</b></i><br/>
             Clue: {point.clue}<br/>
             Message: {point.message}<br/>
             Address: {point.address}
@@ -142,6 +143,10 @@ export default class ScavengerHuntStore extends React.Component {
         {...viewport}
         {...this.state.settings}
         mapStyle="mapbox://styles/idealtypical/cjk33bhe12wnn2stfsbt36uzl"
+        containerStyle={{
+          height: "100%",
+          width: "100%"
+        }}
         onViewportChange={this.onViewportChange}
         mapboxApiAccessToken={token} >
         <style>{MARKER_STYLE}</style>

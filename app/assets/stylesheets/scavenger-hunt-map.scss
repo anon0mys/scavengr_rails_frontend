@@ -1,0 +1,32 @@
+#scavenger-hunt-map {
+  display: grid;
+  grid-template: 100px 150px 1fr 1fr 1fr 1fr 1fr 10px 100px /  1fr 1fr 1fr 1fr 1fr 1fr;
+
+  nav {
+    grid-area: 1 / 1 / 2 / 7;
+
+    .username {
+      grid-area: 1 / 2 / 1 / 5;
+    }
+  }
+
+  .map {
+    grid-area:  2 / 1 / 8 / 7;
+    border-top: 0px;
+
+      form {
+        display: flex;
+        justify-content: space-around;
+        background-color: darkgrey;
+        padding: 0px 0 20px 0 ;
+        border-top: 0px;
+        min-height: 75px;
+      }
+
+  }
+
+  footer {
+    grid-area: 9 / 1 / 9 / 7;
+    // z-index: 1;
+  }
+}
