@@ -9,7 +9,7 @@
   </header>
   <div class="scavenger-hunt-form">
     <%= form_for @scavenger_hunt do |f| %>
-      <%= f.text_field :name, placeholder: :name, required: :true, autocomplete: :off, maxlength: 100 %>
+      <%= f.text_field :name, placeholder: :name, required: :true, autocomplete: :off, maxlength: 40 %>
       <%= f.text_area :description, placeholder: :description, required: :true, autocomplete: :off, maxlength: 250 %>
     <div class="form-buttons">
       <%= f.submit 'Create Scavenger Hunt', class: "submit-button" %>
