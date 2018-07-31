@@ -1,4 +1,3 @@
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWRlYWx0eXBpY2FsIiwiYSI6ImNqazBjcG1tZDA1ZjIzcHFsY3NzeDZjbGUifQ.TKZIYgbzt9g7HVfScLh2cg';
 var map = new mapboxgl.Map({
     container: 'map',
@@ -37,7 +36,55 @@ map.on('load', function() {
     // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
     // makes a selection and add a symbol that matches the result.
     geocoder.on('result', function(ev) {
-        console.log(ev.result)
-        map.getSource('single-point').setData(ev.result.geometry);
+        let location = map.getSource('single-point').setData(ev.result.geometry);
+        address = $('input[placeholder="Search"]').val();
+        $('input[name="coordinates"]').val(location._data.coordinates);
+        $('input[name="address"]').val(address);
     });
 });
+
+$(document).ready(() => {
+  $("#new-point-btn").on("click", addPoint);
+});
+
+
+function addPoint(event) {
+  event.preventDefault()
+  let url = window.location.pathname;
+  let scavenger_hunt_id = url.split('/')[2];
+  point = buildPoint(scavenger_hunt_id)
+  fetch(`/scavenger_hunts/${scavenger_hunt_id}/points`, {
+    method: 'POST',
+    credentials: "same-origin",
+    body: JSON.stringify(point)
+  })
+  .then(response => {
+    if(response.ok) {
+      return response.json()
+    } else {
+      throw new Error('Failed')
+    }
+  })
+  .then((data) => {
+    $(".flash-message").html("<p>Successfully added new point</p>");
+    $('input[name="clue"]').val("");
+    $('input[name="message"]').val("");
+    $('input[name="address"]').val("");
+    $('input[name="coordinates"]').val("");
+    $('input[placeholder="Search"]').val("")
+  })
+  .catch(error => {
+    $(".flash-message").html("<p>Failed to create point</p>")
+  })
+}
+
+function buildPoint(scavenger_hunt_id) {
+  return { point: {
+      scavenger_hunt_id: scavenger_hunt_id,
+      clue: $('input[name="clue"]').val(),
+      message: $('input[name="message"]').val(),
+      address: $('input[name="address"]').val(),
+      location: $('input[name="coordinates"]').val().split(',').map(coord => parseFloat(coord))
+    }
+  }
+}
