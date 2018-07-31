@@ -3,7 +3,7 @@ import ScavengerHuntApi from '../services/scavengerHuntApi';
 
 class ScavengerHuntStore {
   @observable scavenger_hunt = {};
-  @observable checkin = { pointsWithin: [], pointsOutside: []};
+  @observable checkin = { pointsWithin: [], pointsOutside: [], found: [] };
 
   constructor() {
     this.scavengerHuntApi = new ScavengerHuntApi();
@@ -24,6 +24,7 @@ class ScavengerHuntStore {
 
   @action recordCheckin = (checkin) => {
     this.checkin = {
+      found: checkin.found,
       pointsWithin: checkin.in_range,
       pointsOutside: checkin.outside_range,
       lat: parseFloat(checkin.lat),

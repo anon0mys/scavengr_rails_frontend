@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   resources :current_scavenger_hunts, only: %i[index]
 
   resources :scavenger_hunts do
-    resources :points, only: %i[new create]
+    resources :points, only: %i[new create update]
   end
+
+  resources :user_points, only: %i[update]
 
 
   get '/:username/scavenger_hunts', to: 'user_scavenger_hunts#index', as: 'user_scavenger_hunts'

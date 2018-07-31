@@ -14,6 +14,7 @@ class ScavengerHuntChannel < ApplicationCable::Channel
     ActionCable.server.broadcast("scavenger_hunt_#{params[:scavengerHuntId]}_user_#{params[:userId]}", {
       outside_range: client.outside_radius(location, params[:userId]),
       in_range: client.within_radius(location, params[:userId]),
+      found: client.found_points(params[:userId]),
       lat: data['lat'],
       lon: data['lon'],
       captured_at: data['captured_at']
