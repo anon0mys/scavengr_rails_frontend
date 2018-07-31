@@ -1,0 +1,10 @@
+{
+  "application.js": "/packs/application-24110f21a9ccf0998377.js",
+  "application.js.map": "/packs/application-24110f21a9ccf0998377.js.map",
+  "hello-world-bundle.js": "/packs/hello-world-bundle-9cc92483a43729012346.js",
+  "hello-world-bundle.js.map": "/packs/hello-world-bundle-9cc92483a43729012346.js.map",
+  "hello_react.js": "/packs/hello_react-7c211c0bc715747c3b06.js",
+  "hello_react.js.map": "/packs/hello_react-7c211c0bc715747c3b06.js.map",
+  "scavenger-hunt-bundle.js": "/packs/scavenger-hunt-bundle-0552657c387b4ee813b6.js",
+  "scavenger-hunt-bundle.js.map": "/packs/scavenger-hunt-bundle-0552657c387b4ee813b6.js.map"
+}
