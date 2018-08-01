@@ -11,7 +11,7 @@ feature 'A logged in user' do
 
     expect(page).to have_content 'Delete Me'
 
-    visit scavenger_hunt_path(response[:id])
+    visit "/#{@user.username}/scavenger_hunts/1"
 
     click_on 'Delete'
 

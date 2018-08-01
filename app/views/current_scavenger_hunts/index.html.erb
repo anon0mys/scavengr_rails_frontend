@@ -7,7 +7,7 @@
   <div class='cards-container'>
     <% @scavenger_hunts.each do |hunt| %>
       <div class='scavenger-hunt-card'>
-        <a href="/scavenger_hunts/<%= hunt.id %>">
+        <a href="/scavenger_hunts/<%= hunt.scavenger_hunt_id %>">
           <div class="card-left">
             <span class='card-title'><%= hunt.name %></span>
             <li>Creator: <%= hunt.user_id %></li>
