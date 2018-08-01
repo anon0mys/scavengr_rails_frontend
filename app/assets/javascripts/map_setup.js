@@ -45,8 +45,13 @@ map.on('load', function() {
 
 $(document).ready(() => {
   $(".add-point-button").on("click", addPoint);
+  $(".done-button").on("click", doneRedirect);
 });
 
+function doneRedirect(event) {
+  event.preventDefault()
+  window.history.back();
+}
 
 function addPoint(event) {
   event.preventDefault()
