@@ -1,0 +1,26 @@
+#not-found {
+  display: grid;
+  grid-template: 100px 150px 1fr 1fr 1fr 1fr 1fr 100px/  1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: lightgrey;
+
+  nav {
+    grid-area: 1 / 1 / 2 / 7;
+
+    .title {
+      grid-area: 1 / 1 / 1 / 7;
+      color: white;
+      font-size: 45px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  footer {
+    grid-area: 8 / 1 / 8 / 7;
+  }
+
+  .not-found-img {
+    width: 100vw;
+    margin-top: 40%;
+  }
+}

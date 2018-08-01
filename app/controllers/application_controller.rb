@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def not_found
+    render 'layouts/not_found'
+  end
 end

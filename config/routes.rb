@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   get '/:username/scavenger_hunts', to: 'user_scavenger_hunts#index', as: 'user_scavenger_hunts'
   get '/:username/scavenger_hunts/:id', to: 'user_scavenger_hunts#show', as: 'user_scavenger_hunt'
+
+  get '*unmatched_route', to: 'application#not_found'
 end
