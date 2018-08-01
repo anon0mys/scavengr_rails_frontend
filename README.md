@@ -3,7 +3,7 @@
 # Scavengr - Rails Frontend
 
 ### Table Of Contents
-- [Versions/Prerequisites](#versions-prerequisites)
+- [Versions/Prerequisites](#versions/prerequisites)
 - [Setup](#setup)
 - [Elasticsearch](#elasticsearch)
 - [The Test Suite](#the-test-suite)
@@ -74,25 +74,25 @@ rails s
   ```
 
 ### The Test Suite
-- The test suite is written in RSpec. To run the suite you must have a python server running and connected to a test database.
+- The test suite is written in RSpec. To run the suite, you must have a python server running and connected to a test database.
   ```
   python3 manage.py runserver PORT
   ```
-- Once the python app is running run the full test suite with:
+- Once the python app is running, run the full test suite with:
 
   ```
   rspec
   ```
-  
+
 ### Contributions
-Scavengr is open source and welcomes contributions. If you would like to contribute please follow this workflow:
+Scavengr is open source and welcomes contributions. If you would like to contribute, please follow this workflow:
 - Select an [Issue](https://github.com/anon0mys/scavengr_rails_frontend/issues) that you are interested in and get approval from one of the repository owners
 - Ensure you have installed the appropriate [Versions/Prerequisites](#versions-prerequisites)
 - Fork, then clone the repository
 - Follow the [Setup](#setup) instructions
 - Make your desired changes and accompanying tests
-- Open a PR to the anon0mys/qs_golang repository
-- An app administrator will conduct code review and contact you once the fix is accepted or rejected
+- Open a PR to the anon0mys/scavengr_rails_frontend repository
+- An app administrator will conduct code review and contact you with requested changes, or to confirm your contribution has been merged
 
 ### Authors
 - [Evan Wheeler](https://github.com/anon0mys)
