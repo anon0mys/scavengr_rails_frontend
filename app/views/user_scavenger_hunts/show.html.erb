@@ -1,14 +1,42 @@
-<%= @scavenger_hunt.name %>
-<%= button_to 'Edit', edit_scavenger_hunt_path(@scavenger_hunt.id), method: :get %>
-<%= button_to 'Delete', scavenger_hunt_path(@scavenger_hunt.id), method: :delete %>
-<%= @scavenger_hunt.description %>
-<h3>Points</h3>
-<%= button_to 'Add a Point', new_scavenger_hunt_point_path(@scavenger_hunt.id), method: :get %>
-<% @points.each do |point| %>
-  <%= point.address %>
-  <%= point.clue %>
-  <%= point.message %>
-  <%= link_to 'Edit', '#' %>
-  <%= link_to 'Delete', '#' %>
-<% end %>
-<%= link_to 'Start this Hunt', scavenger_hunt_path(@scavenger_hunt.id), method: :get %>
+<main id="user-scavenger-hunt">
+  <nav>
+     <div class="username">
+       <%= "#{@scavenger_hunt.name}" %>
+     </div>
+  </nav>
+
+
+  <div class="scavenger-hunt-information">
+    <div class="scavenger-hunt-description">
+      <span><b>Description:</b><br/> <%= @scavenger_hunt.description %></span>
+    </div>
+    <div class="buttons">
+      <%= link_to 'Start this Hunt', scavenger_hunt_path(@scavenger_hunt.id), method: :get, class: 'form-button start-btn' %>
+      <%= link_to 'Edit', edit_scavenger_hunt_path(@scavenger_hunt.id), method: :get, class: 'form-button edit-btn' %>
+      <%= link_to 'Delete', scavenger_hunt_path(@scavenger_hunt.id), method: :delete, class: 'form-button delete-btn' %>
+    </div>
+  </div>
+
+  <div class="add-points">
+    <h3>Points for this Scavenger Hunt</h3>
+    <%= button_to 'Add a New Point', new_scavenger_hunt_point_path(@scavenger_hunt.id), method: :get, class: 'form-button' %>
+  </div>
+  <div class="points-container">
+    <% @points.each do |point| %>
+    <ul class="points-card">
+      <div class="card-left">
+        <li><b>Address:</b><br/><%= point.address %></li>
+        <li><b>Message:</b> <%= point.message %></li>
+        <li><b>Clue:</b> <%= point.clue %></li>
+      </div>
+      <%= link_to '<i class="fas fa-edit"></i>'.html_safe, '#', method: :get, class: 'edit-btn' %>
+      <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, '#', method: :delete, class: 'delete-btn' %>
+    </ul>
+    <% end %>
+  </div>
+
+  <footer>
+    <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home', title: 'Home' %>
+    <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
+  </footer>
+</main>
