@@ -1,3 +1,9 @@
+<% flash.each do |key, value| %>
+  <div class="flash-<%= key %> notice">
+    <%= value %>
+  </div>
+<% end %>
+
 <main id="home">
   <header>
     <div class="title">
