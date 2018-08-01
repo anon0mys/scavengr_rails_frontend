@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
   root to: 'home#index'
 
   get '/create_account', to: 'users#new', as: 'create_account'
