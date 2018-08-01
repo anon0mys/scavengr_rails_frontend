@@ -44,8 +44,9 @@ class ScavengerHuntStore {
 
       setTimeout(() => {
         this.postCheckin();
-      }, 1000);
-    });
+      }, 500);
+    }, function error(msg) {},
+    { enableHighAccuracy: true });
   }
 }
 
