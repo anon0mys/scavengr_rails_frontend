@@ -7,9 +7,6 @@ class ElasticService
   end
 
   def add_point(point_attrs, index)
-    point_data = JSON.parse(point_attrs, symbolize_names: true)
-    point = Point.new(point_data[:point])
-    raise Error if !point.valid?
     @client.create index: index,
                    type: '_doc',
                    body: point_attrs
@@ -21,8 +18,6 @@ class ElasticService
                    id: point_id,
                    body: { doc: { user_point: { found: true } }}
   end
-
-  # ADD found points query and add must_not match point.found = true to within and outside queries
 
   def all_points
     query = @client.search index: 'points',
@@ -64,7 +59,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_points(query['hits']['hits'])
+    convert_to_user_points(query['hits']['hits'])
   end
 
   def found_points(user_id)
@@ -80,7 +75,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_points(query['hits']['hits'])
+    convert_to_user_points(query['hits']['hits'])
   end
 
   def within_radius(location, user_id,  radius = "250ft")
@@ -102,7 +97,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_points(query['hits']['hits'])
+    convert_to_user_points(query['hits']['hits'])
   end
 
   def outside_radius(location, user_id, radius = "250ft")
@@ -124,20 +119,28 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_points(query['hits']['hits'])
+    convert_to_user_points(query['hits']['hits'])
   end
 
   private
 
     def create_user_point(user_id, point)
-        point.point_id, point.user_id, point.found = point.id, user_id, false
-        point_attrs = { user_point: point }
-        add_point(point_attrs.to_json, 'user_points')
+      point.point_id, point.user_id, point.found = point.id, user_id, false
+      point_attrs = { user_point: point }
+      add_point(point_attrs.to_json, 'user_points')
     end
 
     def convert_to_points(results)
       results.map do |result|
         point = Point.new(result['_source']['point'])
+        point.id = result['_id']
+        point
+      end
+    end
+
+    def convert_to_user_points(results)
+      results.map do |result|
+        point = Point.new(result['_source']['user_point'])
         point.id = result['_id']
         point
       end
