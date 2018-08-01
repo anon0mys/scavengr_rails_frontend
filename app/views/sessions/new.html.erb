@@ -1,8 +1,0 @@
-<%= form_tag login_path, method: :post do %>
-  <%= label_tag 'Username' %>
-  <%= text_field_tag :username, nil, placeholder: 'username' %>
-  <%= label_tag 'Password' %>
-  <%= password_field_tag :password %>
-
-  <%= submit_tag 'Log In' %>
-<% end %>

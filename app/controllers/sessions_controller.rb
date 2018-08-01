@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     user = User.new(user_params)
     service = ScavengrBackend::Users.new()

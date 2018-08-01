@@ -1,0 +1,12 @@
+<main id="not-found">
+  <nav>
+     <div class="title">
+       Page Not Found
+     </div>
+  </nav>
+  <%= image_tag 'map-404', class: 'not-found-img' %>
+  <footer>
+    <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home', title: 'Home' %>
+    <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
+  </footer>
+</main>

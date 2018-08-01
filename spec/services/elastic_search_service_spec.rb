@@ -54,7 +54,7 @@ describe ElasticService, elasticsearch: true do
 
       query_results = service.all_user_points(user_id)
 
-      expect(query_results.first).to be_a UserPoint
+      expect(query_results.first).to be_a Point
       expect(query_results.first.message).to eql "Test adding user point"
     end
   end

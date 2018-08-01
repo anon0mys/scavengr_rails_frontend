@@ -50,10 +50,10 @@ export default class ScavengerHuntStore extends React.Component {
       );
     } else {
       return (
-        <Marker key="0" longitude="-104.9903" latitude="39.7392" >
+        <Marker key="0" longitude="-104.996536" latitude="39.750759" >
           <div className="station marker-style">
-            <span>Lat: -104.9903<br/>
-                  Lon: 39.7392
+            <span>Lat: -104.996536<br/>
+                  Lon: 39.750759
             </span>
           </div>
         </Marker>

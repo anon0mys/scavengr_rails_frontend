@@ -1,5 +1,6 @@
-
 class MapsController < ApplicationController
+  before_action :authenticate!
+  
   def show
     scavenger_service = ScavengrBackend::ScavengerHunts.new(current_user)
     scavenger_hunt = scavenger_service.find(scavenger_hunt_params["id"])

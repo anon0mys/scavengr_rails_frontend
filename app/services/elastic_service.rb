@@ -7,6 +7,9 @@ class ElasticService
   end
 
   def add_point(point_attrs, index)
+    point_data = JSON.parse(point_attrs, symbolize_names: true)
+    point = Point.new(point_data[:point])
+    raise Error if !point.valid?
     @client.create index: index,
                    type: '_doc',
                    body: point_attrs
@@ -61,7 +64,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_user_points(query['hits']['hits'])
+    convert_to_points(query['hits']['hits'])
   end
 
   def found_points(user_id)
@@ -77,7 +80,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_user_points(query['hits']['hits'])
+    convert_to_points(query['hits']['hits'])
   end
 
   def within_radius(location, user_id,  radius = "250ft")
@@ -99,7 +102,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_user_points(query['hits']['hits'])
+    convert_to_points(query['hits']['hits'])
   end
 
   def outside_radius(location, user_id, radius = "250ft")
@@ -121,7 +124,7 @@ class ElasticService
                                }
                              }
                            }
-    convert_to_user_points(query['hits']['hits'])
+    convert_to_points(query['hits']['hits'])
   end
 
   private
@@ -135,14 +138,6 @@ class ElasticService
     def convert_to_points(results)
       results.map do |result|
         point = Point.new(result['_source']['point'])
-        point.id = result['_id']
-        point
-      end
-    end
-
-    def convert_to_user_points(results)
-      results.map do |result|
-        point = UserPoint.new(result['_source']['user_point'])
         point.id = result['_id']
         point
       end
