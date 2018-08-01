@@ -50,7 +50,11 @@ $(document).ready(() => {
 
 function doneRedirect(event) {
   event.preventDefault()
-  window.history.back();
+  if ('referrer' in document) {
+    window.location = document.referrer;
+  } else {
+    window.history.back();
+  }
 }
 
 function addPoint(event) {
