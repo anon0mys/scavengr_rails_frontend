@@ -9,6 +9,22 @@ main {
   width: 100%;
 }
 
+.notice {
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  z-index: 1;
+}
+
+.flash-fail {
+  padding-top: 10px;
+  background-color: #E55116;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center
+}
+
 footer {
   display: grid;
   grid-template: 1fr / 75px 1fr 1fr 1fr 75px;
