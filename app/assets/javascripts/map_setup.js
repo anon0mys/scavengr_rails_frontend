@@ -39,12 +39,12 @@ map.on('load', function() {
         let location = map.getSource('single-point').setData(ev.result.geometry);
         address = $('input[placeholder="Search"]').val();
         $('input[name="coordinates"]').val(location._data.coordinates);
-        $('input[name="address"]').val(address);
+        $('.address-field').val(address);
     });
 });
 
 $(document).ready(() => {
-  $("#new-point-btn").on("click", addPoint);
+  $(".add-point-button").on("click", addPoint);
 });
 
 
@@ -67,14 +67,16 @@ function addPoint(event) {
   })
   .then((data) => {
     $(".flash-message").html("<p>Successfully added new point</p>");
+    $(".flash-message").addClass("flash-message-active");
     $('input[name="clue"]').val("");
     $('input[name="message"]').val("");
-    $('input[name="address"]').val("");
+    $('.address-field').val("");
     $('input[name="coordinates"]').val("");
     $('input[placeholder="Search"]').val("")
   })
   .catch(error => {
     $(".flash-message").html("<p>Failed to create point</p>")
+    $(".flash-message").addClass("flash-message-failure");
   })
 }
 
@@ -83,7 +85,7 @@ function buildPoint(scavenger_hunt_id) {
       scavenger_hunt_id: scavenger_hunt_id,
       clue: $('input[name="clue"]').val(),
       message: $('input[name="message"]').val(),
-      address: $('input[name="address"]').val(),
+      address: $('.address-field').val(),
       location: $('input[name="coordinates"]').val().split(',').map(coord => parseFloat(coord))
     }
   }

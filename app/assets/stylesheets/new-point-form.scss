@@ -1,0 +1,115 @@
+#new-point-form {
+  display: grid;
+  grid-template: 60px 1fr 1fr 1fr 1fr 1fr 1fr 40px/  1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: lightgrey;
+
+  nav {
+    grid-area: 1 / 1 / 2 / 7;
+    text-align: center;
+    max-height: 100%;
+    padding: 0 0 0 0;
+
+    .username {
+      padding: 10px 0 0 0;
+      grid-area: 1 / 1 / 1 / 7;
+      max-height: 60px;
+      width: 100%;
+      font-size: 15px;
+    }
+
+    .flash-message {
+      grid-area: 1 / 1 / 1 / 7;
+      height: 30px;
+      width: 100%;
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .flash-message-active {
+      background-color: #768d87;
+    }
+
+    .flash-message-failure {
+      background-color: #E55116;
+    }
+  }
+
+  #map {
+    grid-area: 2 / 1 / 5 / 7;
+    margin: 10px 10px 0 10px;
+    border: 1px solid darkgrey;
+  }
+
+  .point-form-container {
+    grid-area: 5 / 1 / 8 / 7;
+    font-size: 15px;
+    padding: 10px 0 0 0;
+    margin: 0 15px 0 50px;
+
+    input, textarea {
+      height: 40px;
+      width: 90%;
+      margin: 0 0 5px 0;
+      border-radius: 10px;
+    }
+
+    .address-field {
+      height: 60px;
+      padding: 10px 0 0 10px;
+      font-size: 14px;
+      background-color: #EDEDED;
+    }
+
+    .form-buttons {
+      grid-template: 1fr 10px 1fr / 1fr;
+      font-size: 14px;
+
+      .done-button, .add-point-button {
+        border-radius: 10px;
+        width: 90%;
+        height: 40px;
+        background-color: #768d87;
+        border-radius:10px;
+        border:1px solid #566963;
+        cursor:pointer;
+        color:#ffffff;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .done-button {
+        grid-area: 2 / 2 / 3 / 6
+      }
+
+      .add-point-button {
+        grid-area: 1 / 2 / 2 / 6
+      }
+    }
+  }
+
+  #map-footer {
+    grid-area: 8 / 1 / 9 / 7;
+    display: grid;
+    grid-template: 1fr / 75px 1fr 1fr 1fr 75px;
+    background-color: darkgrey;
+
+    .footer-button {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .sign-out {
+      grid-area: 1 / 1 / 2 / 2;
+      text-align: left;
+      padding: 6px 0 0 25px;
+    }
+
+    .home {
+      grid-area: 1 / 5 / 2 / 6;
+      text-align: right;
+      padding: 6px 25px 0 0;
+    }
+  }
+}
