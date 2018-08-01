@@ -1,4 +1,6 @@
 class UserScavengerHuntsController < ApplicationController
+  before_action :authenticate!
+  
   def index
     service = ScavengrBackend::UserScavengerHunts.new(current_user, params[:username])
     @username = params[:username]

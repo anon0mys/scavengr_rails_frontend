@@ -1,5 +1,6 @@
 class UserPointsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate!
 
   def update
     if current_user.id == point_params[:user_id]

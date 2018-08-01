@@ -1,4 +1,6 @@
 class ScavengerHuntsController < ApplicationController
+  before_action :authenticate!
+  
   def index
     service = ScavengrBackend::ScavengerHunts.new(current_user)
     @scavenger_hunts = service.find_all
