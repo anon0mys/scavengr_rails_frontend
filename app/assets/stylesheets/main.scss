@@ -25,6 +25,15 @@ main {
   text-align: center
 }
 
+.flash-success {
+  padding-top: 10px;
+  background-color: #09814A;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center
+}
+
 footer {
   display: grid;
   grid-template: 1fr / 75px 1fr 1fr 1fr 75px;

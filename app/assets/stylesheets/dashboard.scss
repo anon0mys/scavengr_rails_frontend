@@ -11,6 +11,12 @@
     }
   }
 
+  .flash-success {
+    height: 100px;
+    padding: 25px 0 0 0;
+    background-color: darkgrey;
+  }
+
   footer {
     grid-area: 8 / 1 / 8 / 7;
   }

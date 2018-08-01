@@ -1,9 +1,3 @@
-<% flash.each do |key, value| %>
-  <div class="flash-<%= key %> notice">
-    <%= value %>
-  </div>
-<% end %>
-
 <% if current_user %>
   <main id="dashboard">
     <nav>
@@ -11,6 +5,11 @@
          <%= current_user.username %>
        </div>
     </nav>
+    <% flash.each do |key, value| %>
+      <div class="flash-<%= key %> notice">
+        <%= value %>
+      </div>
+    <% end %>
     <%= link_to 'My Scavenger Hunts', user_scavenger_hunts_path(username: current_user.username), { id: "dash-button1", class: "form-button" } %>
     <%= link_to 'Create a Scavenger Hunt', new_scavenger_hunt_path, { id: "dash-button2", class: "form-button" } %>
     <%= link_to 'Current Scavenger Hunts', current_scavenger_hunts_path, { id: "dash-button3", class: "form-button" } %>
@@ -21,6 +20,11 @@
     </footer>
   </main>
 <% else %>
+  <% flash.each do |key, value| %>
+    <div class="flash-<%= key %> notice">
+      <%= value %>
+    </div>
+  <% end %>
   <main id="home">
     <header>
       <div class="logo">

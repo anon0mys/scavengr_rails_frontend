@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     response = service.create(user)
     if response[:token]
       session[:current_user] = response
-      flash[:success] = 'Your account was created successfully'
+      flash[:success] = "Welcome to Scavengr, #{response[:username]}!"
       redirect_to root_path
     else
-      flash[:failure] = 'Failed to create account'
+      flash[:fail] = 'Failed to create account. Username and/or email already registered.'
       redirect_to create_account_path
     end
   end
