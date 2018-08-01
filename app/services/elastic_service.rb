@@ -78,7 +78,7 @@ class ElasticService
     convert_to_user_points(query['hits']['hits'])
   end
 
-  def within_radius(location, user_id,  radius = "250ft")
+  def within_radius(location, user_id,  radius = "25ft")
     query = @client.search index: 'user_points',
                            body: {
                              query: {
@@ -100,7 +100,7 @@ class ElasticService
     convert_to_user_points(query['hits']['hits'])
   end
 
-  def outside_radius(location, user_id, radius = "250ft")
+  def outside_radius(location, user_id, radius = "25ft")
     query = @client.search index: 'user_points',
                            body: {
                              query: {
