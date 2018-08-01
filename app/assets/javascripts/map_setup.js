@@ -55,6 +55,9 @@ function doneRedirect(event) {
 
 function addPoint(event) {
   event.preventDefault()
+  $(".flash-message").html("");
+  $(".flash-message").removeClass("flash-message-success");
+  $(".flash-message").removeClass("flash-message-failure");
   let url = window.location.pathname;
   let scavenger_hunt_id = url.split('/')[2];
   point = buildPoint(scavenger_hunt_id)
@@ -72,7 +75,7 @@ function addPoint(event) {
   })
   .then((data) => {
     $(".flash-message").html("<p>Successfully added new point</p>");
-    $(".flash-message").addClass("flash-message-active");
+    $(".flash-message").addClass("flash-message-success");
     $('input[name="clue"]').val("");
     $('input[name="message"]').val("");
     $('.address-field').val("");
