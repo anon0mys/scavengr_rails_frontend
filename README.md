@@ -50,13 +50,14 @@ rails s
 - Setup [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.3/_installation.html)
 
 ### Elasticsearch
-- This project uses elasticsearch as the docstore for location data. To set up a basic elasticsearch instance follow the [getting started documentation](https://www.elastic.co/guide/en/elasticsearch/reference/6.3/_installation.html).
-- Once elasticsearch is installed and started run the rake setup task:
+- This project uses elasticsearch as the docstore for location data. To set up a basic elasticsearch instance, follow the [official getting started documentation](https://www.elastic.co/guide/en/elasticsearch/reference/6.3/_installation.html).
+- Once elasticsearch is installed and started, run the rake setup task:
 
   ```
   rake elasticsearch:index_setup
   ```
-- If you ever need to reset the cluster and clear all the data you can run (WARNING This will delete all of the data in elasticsearch):
+- If you ever need to reset the cluster and clear all the data, you can run:
+_*WARNING This will delete all of the data in your elasticsearch stores*_
 
   ```
   rake elasticsearch:index_reset
