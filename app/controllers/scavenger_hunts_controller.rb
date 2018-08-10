@@ -41,6 +41,7 @@ class ScavengerHuntsController < ApplicationController
     service = ScavengrBackend::ScavengerHunts.new(current_user)
     service.destroy(params[:id])
     DeletePointsJob.perform_later(params[:id])
+    DeleteAllUserPointsJob.perform_later(params[:id])
     flash[:success] = "Scavenger hunt deleted"
     redirect_to "/#{current_user.username}/scavenger_hunts"
   end

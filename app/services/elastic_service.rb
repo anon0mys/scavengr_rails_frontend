@@ -47,16 +47,14 @@ class ElasticService
   end
 
   def delete_all_user_points
-    @client.delete index: 'user_points',
-                   type: '_doc',
-                   body: { query: {
-                              bool: {
-                                must: {
-                                  match: { 'user_point.scavenger_hunt_id' => @scavenger_hunt_id }
-                                }
-                              }
-                            }
-                          }
+    @client.delete_by_query index: 'user_points',
+                            type: '_doc',
+                            body: { query: {
+                                      bool: {
+                                        must: { match: { 'user_point.scavenger_hunt_id' => @scavenger_hunt_id } }
+                                      }
+                                    }
+                                  }
   end
 
   def all_points
