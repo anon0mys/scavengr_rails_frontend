@@ -19,6 +19,41 @@ class ElasticService
                    body: { doc: { user_point: { found: true } }}
   end
 
+  def delete_points
+    @client.delete_by_query index: 'points',
+                            type: '_doc',
+                            body: { query:
+                              must: {
+                                match: {
+                                  'point.scavenger_hunt_id' => @scavenger_hunt_id
+                                }
+                              }
+                            }
+  end
+
+  def delete_user_points(user_id)
+    @client.delete_by_query index: 'user_points',
+                            type: '_doc',
+                            body: { query:
+                                    must: [
+                                      { match: { 'user_point.scavenger_hunt_id' => @scavenger_hunt_id } },
+                                      { match: { 'user_point.user_id' => user_id } }
+                                    ]
+                                  }
+  end
+
+  def delete_all_user_points
+    @client.delete index: 'user_points',
+                   type: '_doc',
+                   body: { query:
+                            must: {
+                              match: {
+                                'user_point.scavenger_hunt_id' => @scavenger_hunt_id
+                              }
+                            }
+                          }
+  end
+
   def all_points
     query = @client.search index: 'points',
                            body: {
