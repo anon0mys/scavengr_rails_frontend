@@ -6,5 +6,7 @@ class CurrentScavengerHuntsController < ApplicationController
     @scavenger_hunts = service.current_scavenger_hunts
   end
 
-  def destroy; end
+  def destroy
+    require 'pry'; binding.pry
+  end
 end
