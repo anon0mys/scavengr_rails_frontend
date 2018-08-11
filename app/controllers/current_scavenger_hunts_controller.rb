@@ -7,6 +7,8 @@ class CurrentScavengerHuntsController < ApplicationController
   end
 
   def destroy
-    require 'pry'; binding.pry
+    service = ScavengrBackend::UserScavengerHunts.new(current_user, current_user.username)
+    service.destroy_current_scavenger_hunt(params[:id])
+    DeleteUserPointsJob.perform_later(params[:id], current_user.id)
   end
 end

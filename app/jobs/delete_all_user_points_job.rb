@@ -3,6 +3,6 @@ class DeleteAllUserPointsJob < ApplicationJob
 
   def perform(scavenger_hunt_id)
     service = ElasticService.new(scavenger_hunt_id)
-    service.delete_all_user_points.deliver_now
+    service.delete_all_user_points
   end
 end

@@ -14,7 +14,7 @@
             <li>Description: <%= hunt.description %></li>
           </div>
         </a>
-        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, current_scavenger_hunts_path(hunt.id), method: :delete, class: 'delete-btn' %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, current_scavenger_hunt_path(hunt.scavenger_hunt_id), method: :delete, class: 'delete-btn' %>
       </div>
     <% end %>
   </div>

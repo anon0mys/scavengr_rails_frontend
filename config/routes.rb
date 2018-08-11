@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[create]
 
-  resources :current_scavenger_hunts, only: %i[index delete]
+  resources :current_scavenger_hunts, only: %i[index destroy]
 
   resources :scavenger_hunts do
     resources :points, only: %i[new create update]
