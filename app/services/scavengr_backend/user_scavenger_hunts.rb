@@ -27,9 +27,8 @@ module ScavengrBackend
       end
     end
 
-    def destroy_current_scavenger_hunt(id)
-      require 'pry'; binding.pry
-      delete("/api/v1/current_scavenger_hunts/#{id}")
+    def destroy_current_scavenger_hunt(scavenger_hunt_id)
+      delete("/api/v1/current_scavenger_hunts/#{scavenger_hunt_id}")
     end
   end
 end
