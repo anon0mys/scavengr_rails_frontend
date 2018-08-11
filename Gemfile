@@ -36,6 +36,8 @@ gem 'react_on_rails'
 gem 'elasticsearch'
 gem 'figaro'
 gem 'jquery-rails'
+gem 'sidekiq'
+
 
 
 group :development, :test do
