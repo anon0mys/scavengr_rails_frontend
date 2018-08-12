@@ -13,11 +13,11 @@ function deleteCurrentScavengerHunt(event) {
         "Authorization": `Token ${token}`
       }
   })
-  .then(response => fetchCurrentScavengerHunts(token, username, response))
+  .then(response => fetchCurrentScavengerHunts(username, token, response))
   .catch(error => console.log(error));
 }
 
-async function fetchCurrentScavengerHunts(token, username, response) {
+async function fetchCurrentScavengerHunts(username, token, response) {
   await response
   fetch(`https://scavengr-django.herokuapp.com/api/v1/current_scavenger_hunts/`, {
       method: 'GET',
@@ -27,10 +27,29 @@ async function fetchCurrentScavengerHunts(token, username, response) {
   })
   .then(response => {
     let scavengerHunts = response.json()
-    populateCurrentScavengerHunts(scavengerHunts)
+    populateCurrentScavengerHunts(username, token, scavengerHunts)
+    displayFlashMessage();
   })
   .catch(error => console.log(error));
-  displayFlashMessage();
+}
+
+async function populateCurrentScavengerHunts(username, token, response) {
+  let currentScavengerHunts = await response
+  $('.cards-container').html("")
+  currentScavengerHunts.forEach(hunt => {
+    $('.cards-container').append(
+       `<ul class='scavenger-hunt-card'>
+          <a href=/${username}/scavenger_hunts/${hunt.scavenger_hunt_id}>
+            <div class='card-left'>
+              <span class='card-title'>${hunt.name}</span>
+              <li>Creator: ${hunt.user_id}</li>
+              <li>Description: ${hunt.description}</li>
+            </div>
+          </a>
+          <a class="delete-btn" username=${username} token=${token} scavenger_hunt_id=${hunt.scavenger_hunt_id} href="#"><i class="fas fa-trash-alt"></i></a>
+        </ul>`
+      )
+  })
 }
 
 function displayFlashMessage() {
@@ -42,22 +61,4 @@ function displayFlashMessage() {
 function clearFlashMessage() {
   $(".flash-message").html("");
   $(".flash-message").removeClass("flash-message-success");
-}
-
-async function populateCurrentScavengerHunts(response) {
-  let currentScavengerHunts = await response
-  $('.cards-container').replaceWith("")
-  currentScavengerHunts.forEach(hunt => {
-    debugger
-     $('.cards-container').append(
-       `<ul class='scavenger-hunt-card'>
-          <a href=/${hunt.username}/scavenger_hunts/${hunt.id}>
-            <div class='card-left'>
-              <span class='card-title'>${hunt.name}</span>
-              <li>Description: ${hunt.description}</li>
-            </div>
-          </a>
-        </ul>`
-      )
-  })
 }
