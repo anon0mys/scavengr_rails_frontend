@@ -55,11 +55,11 @@ async function populateUserScavengerHunts(username, token, response) {
 
 function displayFlashMessage() {
   $(".flash-message").html("<p>Successfully deleted scavenger hunt</p>");
-  $(".flash-message").addClass("flash-message-success");
+  $(".flash-message").addClass("flash-success");
   setTimeout(clearFlashMessage, 2000);
 }
 
 function clearFlashMessage() {
   $(".flash-message").html("");
-  $(".flash-message").removeClass("flash-message-success");
+  $(".flash-message").removeClass("flash-success");
 }
