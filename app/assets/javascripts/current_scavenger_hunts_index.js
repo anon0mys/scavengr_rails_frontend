@@ -50,6 +50,7 @@ async function populateCurrentScavengerHunts(username, token, response) {
         </ul>`
       )
   })
+  $(".delete-btn").on("click", deleteCurrentScavengerHunt);
 }
 
 function displayFlashMessage() {
