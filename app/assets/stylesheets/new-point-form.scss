@@ -22,15 +22,22 @@
       height: 30px;
       width: 100%;
       margin-top: 5px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
+      padding: 7px 0 0 0;
+
+
+      p {
+        margin: 0;
+        padding: 0 0 10px 0;
+      }
     }
 
-    .flash-message-success {
+    .flash-success {
       background-color: #768d87;
     }
 
-    .flash-message-failure {
+    .flash-failure {
       background-color: #E55116;
     }
   }
