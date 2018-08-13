@@ -16,7 +16,7 @@
       </a>
       <% if current_user.id == hunt.user_id %>
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_scavenger_hunt_path(hunt.id), method: :get, class: 'edit-btn' %>
-        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, "", class: 'delete-btn delete-user-scavenger-hunt', username: "#{current_user.username}", token: "#{current_user.token}", scavenger_hunt_id: "#{hunt.id}"%>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn delete-user-scavenger-hunt', username: "#{current_user.username}", token: "#{current_user.token}", scavenger_hunt_id: "#{hunt.id}"%>
       <% end %>
     </ul>
     <% end %>

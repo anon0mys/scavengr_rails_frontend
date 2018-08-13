@@ -38,8 +38,6 @@ class ScavengerHuntsController < ApplicationController
   end
 
   def destroy
-    service = ScavengrBackend::ScavengerHunts.new(current_user)
-    service.destroy(params[:id])
     DeletePointsJob.perform_later(params[:id])
     DeleteAllUserPointsJob.perform_later(params[:id])
   end
