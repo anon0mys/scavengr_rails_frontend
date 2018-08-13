@@ -3,7 +3,6 @@ $(document).ready(() => {
 });
 
 function deleteUserScavengerHunt(event) {
-  event.preventDefault()
   let token = $(this).attr('token')
   let username = $(this).attr('username')
   let scavenger_hunt_id = $(this).attr('scavenger_hunt_id')

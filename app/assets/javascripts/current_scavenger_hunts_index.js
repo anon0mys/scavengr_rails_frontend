@@ -3,7 +3,6 @@ $(document).ready(() => {
 });
 
 function deleteCurrentScavengerHunt(event) {
-  event.preventDefault()
   let token = $(this).attr('token')
   let username = $(this).attr('username')
   let scavenger_hunt_id = $(this).attr('scavenger_hunt_id')
@@ -46,7 +45,7 @@ async function populateCurrentScavengerHunts(username, token, response) {
               <li>Description: ${hunt.description}</li>
             </div>
           </a>
-          <a class="delete-btn delete-current-scavenger-hunt" username=${username} token=${token} scavenger_hunt_id=${hunt.scavenger_hunt_id} data-method="delete" href="/current_scavenger_hunts/${hunt.scavenger_hunt_id}">><i class="fas fa-trash-alt"></i></a>
+          <a class="delete-btn delete-current-scavenger-hunt" username=${username} token=${token} scavenger_hunt_id=${hunt.scavenger_hunt_id} data-method="delete" href="/current_scavenger_hunts/${hunt.scavenger_hunt_id}"><i class="fas fa-trash-alt"></i></a>
         </ul>`
       )
   })
