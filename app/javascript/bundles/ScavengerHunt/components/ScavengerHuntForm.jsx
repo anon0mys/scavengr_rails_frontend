@@ -12,6 +12,7 @@ export default class ScavengerHuntForm extends React.Component {
     const url = window.location.pathname;
     const id = url.substring(url.lastIndexOf('/') + 1);
     this.props.ScavengerHuntStore.findScavengerHunt(id, this.props.user_id);
+    this.props.ScavengerHuntStore.trackLocation();
   }
 
   render() {

@@ -9,6 +9,19 @@ class ScavengerHuntStore {
     this.scavengerHuntApi = new ScavengerHuntApi();
   }
 
+  @action trackLocation = () => {
+    navigator.geolocation.watchPosition(position => {
+      this.checkin = {
+        found: checkin.found,
+        pointsWithin: checkin.in_range,
+        pointsOutside: checkin.outside_range,
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        captured_at: parseInt(checkin.captured_at)
+      };
+    })
+  }
+
   @action findScavengerHunt = (id, userId) => {
     this.scavengerHuntApi.findScavengerHunt(id)
       .then(scavenger_hunt => {
