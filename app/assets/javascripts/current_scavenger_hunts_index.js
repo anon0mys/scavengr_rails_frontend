@@ -46,7 +46,7 @@ async function populateCurrentScavengerHunts(username, token, response) {
               <li>Description: ${hunt.description}</li>
             </div>
           </a>
-          <a class="delete-btn delete-current-scavenger-hunt" username=${username} token=${token} scavenger_hunt_id=${hunt.scavenger_hunt_id} href=""><i class="fas fa-trash-alt"></i></a>
+          <a class="delete-btn delete-current-scavenger-hunt" username=${username} token=${token} scavenger_hunt_id=${hunt.scavenger_hunt_id} data-method="delete" href="/current_scavenger_hunts/${hunt.scavenger_hunt_id}">><i class="fas fa-trash-alt"></i></a>
         </ul>`
       )
   })
