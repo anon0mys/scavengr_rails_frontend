@@ -4,8 +4,13 @@
        <%= "#{@scavenger_hunt.name}" %>
      </div>
   </nav>
-
-
+  <div class="flash-message">
+    <% flash.each do |key, value| %>
+      <div class="flash-<%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
+  </div>
   <div class="scavenger-hunt-information">
     <div class="scavenger-hunt-description">
       <span><b>Description:</b><br/> <%= @scavenger_hunt.description %></span>

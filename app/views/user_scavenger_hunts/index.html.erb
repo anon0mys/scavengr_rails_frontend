@@ -4,6 +4,7 @@
        <%= "#{@username}'s Scavenger Hunts" %>
      </div>
   </nav>
+  <div class="flash-message"></div>
   <div class='cards-container'>
     <% @scavenger_hunts.each do |hunt| %>
     <ul class='scavenger-hunt-card'>
@@ -15,7 +16,7 @@
       </a>
       <% if current_user.id == hunt.user_id %>
         <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_scavenger_hunt_path(hunt.id), method: :get, class: 'edit-btn' %>
-        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn' %>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_path(hunt.id), method: :delete, class: 'delete-btn delete-user-scavenger-hunt', username: "#{current_user.username}", token: "#{current_user.token}", scavenger_hunt_id: "#{hunt.id}"%>
       <% end %>
     </ul>
     <% end %>
@@ -25,3 +26,5 @@
     <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
   </footer>
 </main>
+
+<%= javascript_include_tag 'user_scavenger_hunts_index.js' %>

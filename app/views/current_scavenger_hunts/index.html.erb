@@ -1,19 +1,21 @@
 <main id="index">
   <nav>
      <div class="username">
-       <%= "Current Scavenger Hunts" %>
+       <span>Current Scavenger Hunts</span>
      </div>
   </nav>
+  <div class="flash-message"></div>
   <div class='cards-container'>
     <% @scavenger_hunts.each do |hunt| %>
       <div class='scavenger-hunt-card'>
         <a href="/scavenger_hunts/<%= hunt.scavenger_hunt_id %>">
           <div class="card-left">
             <span class='card-title'><%= hunt.name %></span>
-            <li>Creator: <%= hunt.user_id %></li>
+            <li>Creator: <%= hunt.creator %></li>
             <li>Description: <%= hunt.description %></li>
           </div>
         </a>
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, current_scavenger_hunt_path(id=hunt.scavenger_hunt_id), method: :delete, class: 'delete-btn delete-current-scavenger-hunt', username: "#{current_user.username}", token: "#{current_user.token}", scavenger_hunt_id: "#{hunt.scavenger_hunt_id}"%>
       </div>
     <% end %>
   </div>
@@ -22,3 +24,5 @@
     <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
   </footer>
 </main>
+
+<%= javascript_include_tag 'current_scavenger_hunts_index.js' %>

@@ -10,6 +10,21 @@
     }
   }
 
+  .flash-message {
+    grid-area: 2 / 1 / 3 / 7;
+    height: 100%;
+    width: 100%;
+    font-size: 13px;
+    padding: 0 0 6px 0;
+    text-align: center;
+    color: white;
+  }
+
+  .flash-success {
+    padding: 5px 0 5px 0;
+    background-color: #768d87;
+  }
+
   .scavenger-hunt-information {
     grid-area: 2 / 2 / 4 / 6;
     padding: 75px 0 0 0;
