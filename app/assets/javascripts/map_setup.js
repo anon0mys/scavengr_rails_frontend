@@ -36,10 +36,19 @@ map.on('load', function() {
     // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
     // makes a selection and add a symbol that matches the result.
     geocoder.on('result', function(ev) {
-        let location = map.getSource('single-point').setData(ev.result.geometry);
-        address = $('input[placeholder="Search"]').val();
-        $('input[name="coordinates"]').val(location._data.coordinates);
-        $('.address-field').val(address);
+      let location = map.getSource('single-point').setData(ev.result.geometry);
+      address = $('input[placeholder="Search"]').val();
+      $('input[name="coordinates"]').val(location._data.coordinates);
+      $('.address-field').val(address);
+    });
+
+    //Listen for a 'select' event on the map and add a marker to the map
+    map.on('click', function(ev) {
+      let coords = ev.lngLat.toArray()
+      let location = map.getSource('single-point').setData({type: "Point", coordinates: coords});
+      address = `Lat: ${coords[0].toFixed(3)}, Lng: ${coords[1].toFixed(3)}`;
+      $('input[name="coordinates"]').val(location._data.coordinates);
+      $('.address-field').val(address);
     });
 });
 
