@@ -1,0 +1,14 @@
+.center-button {
+  position: absolute;
+  right: 55px;
+  bottom: 150px;
+  z-index: 1;
+
+  button {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: solid 2px black;
+    font-size: 1.5em;
+  }
+}

@@ -17,7 +17,7 @@ export default class ScavengerHuntStore extends React.Component {
       viewport: {
         latitude: 39.750759,
         longitude: -104.996536,
-        zoom: 16,
+        zoom: 11,
         bearing: 0,
         pitch: 0,
         width: window.innerWidth,
@@ -35,6 +35,28 @@ export default class ScavengerHuntStore extends React.Component {
         maxPitch: 85
       }
     };
+
+    this.findCenter();
+  }
+
+  findCenter = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setMapCenter(position.coords)
+    })
+  }
+
+  setMapCenter = (coords) => {
+    let viewport = {
+                      latitude: coords.latitude,
+                      longitude: coords.longitude,
+                      zoom: 11,
+                      bearing: 0,
+                      pitch: 0,
+                      width: window.innerWidth,
+                      height: window.innerHeight * .843
+                    }
+    this.setState({viewport});
+    this.forceUpdate();
   }
 
   renderMarker = (checkin) => {
@@ -46,16 +68,6 @@ export default class ScavengerHuntStore extends React.Component {
                 Lon: {checkin.lon}
           </span>
         </div>
-        </Marker>
-      );
-    } else {
-      return (
-        <Marker key="0" longitude="-104.996536" latitude="39.750759" >
-          <div className="station marker-style">
-            <span>Lat: -104.996536<br/>
-                  Lon: 39.750759
-            </span>
-          </div>
         </Marker>
       );
     }
@@ -96,22 +108,22 @@ export default class ScavengerHuntStore extends React.Component {
     }
   }
 
-renderFound = (point) => {
-  if (point.location != undefined) {
-    return (
-      <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
-        <div className="station found">
-          <span>
-            <i><b>POINT FOUND</b></i><br/>
-            Clue: {point.clue}<br/>
-            Message: {point.message}<br/>
-            Address: {point.address}
-          </span>
-        </div>
-      </Marker>
-    );
+  renderFound = (point) => {
+    if (point.location != undefined) {
+      return (
+        <Marker key={point.location[0] * point.location[1]} longitude={point.location[0]} latitude={point.location[1]} >
+          <div className="station found">
+            <span>
+              <i><b>POINT FOUND</b></i><br/>
+              Clue: {point.clue}<br/>
+              Message: {point.message}<br/>
+              Address: {point.address}
+            </span>
+          </div>
+        </Marker>
+      );
+    }
   }
-}
 
   onViewportChange = (viewport) => {
     this.setState({viewport});
@@ -134,6 +146,13 @@ renderFound = (point) => {
     };
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setMapCenter(position.coords)
+    })
+  }
+
   render() {
     const {ScavengerHuntStore} = this.props;
     const viewport = this.viewport();
@@ -154,6 +173,9 @@ renderFound = (point) => {
         { ScavengerHuntStore.checkin.pointsOutside.map(this.renderOutOfRange) }
         { ScavengerHuntStore.checkin.pointsWithin.map(this.renderWithinRange) }
         { this.renderMarker(ScavengerHuntStore.checkin) }
+        <section className="center-button">
+         <button type="submit" onClick={e => this.handleSubmit(e)}>+</button>
+        </section>
       </MapGL>
     );
   }
