@@ -55,7 +55,8 @@ export default class ScavengerHuntStore extends React.Component {
                       width: window.innerWidth,
                       height: window.innerHeight * .843
                     }
-    this.setState({viewport})
+    this.setState({viewport});
+    this.forceUpdate();
   }
 
   renderMarker = (checkin) => {
@@ -145,6 +146,13 @@ export default class ScavengerHuntStore extends React.Component {
     };
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setMapCenter(position.coords)
+    })
+  }
+
   render() {
     const {ScavengerHuntStore} = this.props;
     const viewport = this.viewport();
@@ -165,6 +173,9 @@ export default class ScavengerHuntStore extends React.Component {
         { ScavengerHuntStore.checkin.pointsOutside.map(this.renderOutOfRange) }
         { ScavengerHuntStore.checkin.pointsWithin.map(this.renderWithinRange) }
         { this.renderMarker(ScavengerHuntStore.checkin) }
+        <section className="center-button">
+         <button type="submit" onClick={e => this.handleSubmit(e)}>+</button>
+        </section>
       </MapGL>
     );
   }
