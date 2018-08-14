@@ -16,6 +16,7 @@
     <%= link_to 'Scavenger Hunt Search', scavenger_hunts_path, { id: "dash-button4", class: "form-button" } %>
     <footer>
       <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
+      <div class="sign-out-text">LOG OUT</div>
     </footer>
   </main>
 <% else %>
