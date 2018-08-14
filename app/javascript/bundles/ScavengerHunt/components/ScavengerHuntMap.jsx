@@ -13,12 +13,10 @@ export default class ScavengerHuntStore extends React.Component {
   constructor() {
     super();
 
-    let center = { lat: 39.750759, lon: -104.996536 }
-
     this.state = {
       viewport: {
-        latitude: center.lat,
-        longitude: center.lon,
+        latitude: 39.750759,
+        longitude: -104.996536,
         zoom: 11,
         bearing: 0,
         pitch: 0,
@@ -37,6 +35,14 @@ export default class ScavengerHuntStore extends React.Component {
         maxPitch: 85
       }
     };
+
+    this.findCenter();
+  }
+
+  findCenter = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setMapCenter(position.coords)
+    })
   }
 
   setMapCenter = (coords) => {
@@ -142,10 +148,6 @@ export default class ScavengerHuntStore extends React.Component {
   render() {
     const {ScavengerHuntStore} = this.props;
     const viewport = this.viewport();
-
-    navigator.geolocation.getCurrentPosition(position => {
-      this.setMapCenter(position.coords)
-    })
 
     return (
       <MapGL
