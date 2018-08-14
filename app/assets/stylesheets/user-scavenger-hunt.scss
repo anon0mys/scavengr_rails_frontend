@@ -77,6 +77,10 @@
       padding: 0px 0 0 0;
       width: 100%;
     }
+
+    .form-button {
+      outline: none;
+    }
   }
 
   .points-container {
@@ -125,6 +129,6 @@
 
 
   footer {
-    grid-area: 10 / 1 / 11 / 7;
+    grid-area: 9 / 1 / 10 / 7;
   }
 }

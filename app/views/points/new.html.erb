@@ -7,9 +7,9 @@
   <nav>
      <div class="username">
        <span>Add a New Point</span><br>
-       <div class="flash-message"></div>
      </div>
   </nav>
+  <div class="flash-message"></div>
 
   <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
   <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
@@ -23,15 +23,14 @@
       <textarea name="address" wrap='soft' rows="10" cols="30" placeholder="Address (Search Above)" class="address-field" disabled>Use Search Bar</textarea>
       <input type="hidden" id="coordinates" name="coordinates" value="">
       <div class="form-buttons">
-        <input type="submit" class="add-point-button" value="Add Point">
-        <button type="button" name="done-button" class="done-button">Done Adding Points</button>
+        <input type="submit" class="form-button add-point-button" value="Add Point">
+        <button type="button" name="done-button" class="form-button done-button">Done Adding Points</button>
       </div>
     </form>
   </div>
 
   <footer id="map-footer">
     <%= link_to '<i class="fas fa-home"></i>'.html_safe, root_path, class: 'footer-button home', title: 'Home' %>
-    <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, logout_path, method: :delete, class: 'footer-button sign-out', title: 'Sign out' %>
   </footer>
 </main>
 
