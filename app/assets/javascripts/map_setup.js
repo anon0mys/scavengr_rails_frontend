@@ -12,6 +12,11 @@ var geocoder = new MapboxGeocoder({
 
 map.addControl(geocoder);
 
+navigator.geolocation.getCurrentPosition(position => {
+  let coords = [position.coords.longitude, position.coords.latitude]
+  map.setCenter(coords)
+})
+
 // After the map style has loaded on the page, add a source layer and default
 // styling for a single point.
 map.on('load', function() {
