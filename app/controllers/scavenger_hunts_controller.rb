@@ -43,7 +43,7 @@ class ScavengerHuntsController < ApplicationController
     if response.status == 204
       DeletePointsJob.perform_later(params[:id])
       DeleteAllUserPointsJob.perform_later(params[:id])
-      flash[:success] = "Scavenger hunt deleted"
+      flash[:success] = "Successfully deleted scavenger hunt"
     else
       flash[:error] = "Failed to delete scavenger hunt"
     end
