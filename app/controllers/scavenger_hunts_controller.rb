@@ -38,8 +38,17 @@ class ScavengerHuntsController < ApplicationController
   end
 
   def destroy
-    DeletePointsJob.perform_later(params[:id])
-    DeleteAllUserPointsJob.perform_later(params[:id])
+    service = ScavengrBackend::ScavengerHunts.new(current_user)
+    response = service.destroy(params[:id])
+    require 'pry'; binding.pry
+    if response.status == 204
+      DeletePointsJob.perform_later(params[:id])
+      DeleteAllUserPointsJob.perform_later(params[:id])
+      flash[:success] = "Scavenger hunt deleted"
+    else
+      flash[:error] = "Failed to delete scavenger hunt"
+    end
+    redirect_to "/#{current_user.username}/scavenger_hunts"
   end
 
   private
