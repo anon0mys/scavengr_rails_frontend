@@ -18,7 +18,7 @@ class PointsController < ApplicationController
 
   private
 
-  def point_params
-    JSON.parse(request.body.to_json)[0]
-  end
+    def point_params
+      JSON.parse(request.body.to_json)[0]
+    end
 end
