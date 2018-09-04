@@ -1,4 +1,5 @@
 $(document).ready(() => {
+  setTimeout(clearFlashMessage, 2500);
   $(".delete-user-scavenger-hunt").unbind("click").on("click", deleteUserScavengerHunt);
 });
 
