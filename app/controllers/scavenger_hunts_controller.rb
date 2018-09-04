@@ -40,7 +40,6 @@ class ScavengerHuntsController < ApplicationController
   def destroy
     service = ScavengrBackend::ScavengerHunts.new(current_user)
     response = service.destroy(params[:id])
-    require 'pry'; binding.pry
     if response.status == 204
       DeletePointsJob.perform_later(params[:id])
       DeleteAllUserPointsJob.perform_later(params[:id])
@@ -53,7 +52,7 @@ class ScavengerHuntsController < ApplicationController
 
   private
 
-  def hunt_params
-    params.require(:scavenger_hunt).permit(:name, :description)
-  end
+    def hunt_params
+      params.require(:scavenger_hunt).permit(:name, :description)
+    end
 end
