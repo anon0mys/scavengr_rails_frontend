@@ -35,7 +35,7 @@
         <li><b>Clue:</b> <%= point.clue %></li>
       </div>
       <%= link_to '<i class="fas fa-edit"></i>'.html_safe, '#', method: :get, class: 'edit-btn' %>
-      <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, '#', method: :delete, class: 'delete-btn' %>
+      <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, scavenger_hunt_point_path(point.id, point.scavenger_hunt_id), method: :delete, class: 'delete-btn delete-scavenger-hunt-point'%>
     </ul>
     <% end %>
   </div>
