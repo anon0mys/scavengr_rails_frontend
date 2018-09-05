@@ -19,19 +19,6 @@ class ElasticService
                    body: { doc: { user_point: { found: true } }}
   end
 
-  def delete_point(point_id)
-    @client.delete_by_query index: 'points',
-                            type: '_doc',
-                            body: { query: {
-                                      bool: {
-                                        must: {
-                                          match: { '_id' => point_id }
-                                        }
-                                      }
-                                    }
-                                  }
-  end
-
   def delete_user_point(point_id)
     @client.delete_by_query index: 'user_points',
                             type: '_doc',
