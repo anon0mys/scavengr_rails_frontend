@@ -38,13 +38,21 @@ class ScavengerHuntsController < ApplicationController
   end
 
   def destroy
-    DeletePointsJob.perform_later(params[:id])
-    DeleteAllUserPointsJob.perform_later(params[:id])
+    service = ScavengrBackend::ScavengerHunts.new(current_user)
+    response = service.destroy(params[:id])
+    if response.status == 204
+      DeletePointsJob.perform_later(params[:id])
+      DeleteAllUserPointsJob.perform_later(params[:id])
+      flash[:success] = "Successfully deleted scavenger hunt"
+    else
+      flash[:error] = "Failed to delete scavenger hunt"
+    end
+    redirect_to "/#{current_user.username}/scavenger_hunts"
   end
 
   private
 
-  def hunt_params
-    params.require(:scavenger_hunt).permit(:name, :description)
-  end
+    def hunt_params
+      params.require(:scavenger_hunt).permit(:name, :description)
+    end
 end

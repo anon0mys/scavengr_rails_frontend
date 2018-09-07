@@ -2,8 +2,7 @@ class PointsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate!
 
-  def new
-  end
+  def new; end
 
   def create
     service = ScavengrBackend::ScavengerHunts.new(current_user)
@@ -19,7 +18,7 @@ class PointsController < ApplicationController
 
   private
 
-  def point_params
-    JSON.parse(request.body.to_json)[0]
-  end
+    def point_params
+      JSON.parse(request.body.to_json)[0]
+    end
 end
