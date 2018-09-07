@@ -37,9 +37,9 @@ async function fetchPoints(response) {
 async function populatePoints(response) {
   let points = await response
   let results = points.hits.hits
-  $('.cards-container').html("")
+  $('.points-container').html("")
   results.forEach(result => {
-    $('.cards-container').append(
+    $('.points-container').append(
        `<ul class="points-card">
           <div class="card-left">
             <li><b>Address:</b><br> ${result._source.point.address}</li>
