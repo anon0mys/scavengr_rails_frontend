@@ -16,6 +16,10 @@ class PointsController < ApplicationController
     end
   end
 
+  def destroy
+    DeleteCorrespondingUserPointsJob.perform_later(params[:scavenger_hunt_id], params[:id])
+  end
+
   private
 
     def point_params

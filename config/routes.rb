@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :current_scavenger_hunts, only: %i[index destroy]
 
   resources :scavenger_hunts do
-    resources :points, only: %i[new create update]
+    resources :points, only: %i[new create update destroy]
   end
 
   delete '/scavenger_hunt_points/:scavenger_hunt_id', to: 'scavenger_hunt_points#destroy', as: 'all_scavenger_hunt_points'
