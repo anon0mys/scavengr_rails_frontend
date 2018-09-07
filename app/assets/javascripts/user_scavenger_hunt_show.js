@@ -3,6 +3,7 @@ $(document).ready(() => {
 });
 
 function deleteScavengerHuntPoint(event) {
+  let scavengerHuntId = $(this).attr('scavenger_hunt_id')
   let pointId = $(this).attr('point_id')
   fetch('https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_delete_by_query', {
       method: "POST",
@@ -12,11 +13,11 @@ function deleteScavengerHuntPoint(event) {
       },
       body: `{ "query": { "bool": { "must": { "match": { "_id": "${pointId}"  } } } } }`
   })
-  .then(response => fetchPoints(response.json()))
+  .then(response => fetchPoints(response.json(), scavengerHuntId))
   .catch(error => console.log(error));
 }
 
-async function fetchPoints(response) {
+async function fetchPoints(response, scavengerHuntId) {
   await response
   fetch(`https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_search`, {
       method: "POST",
@@ -24,7 +25,7 @@ async function fetchPoints(response) {
         "Authorization": "Basic ZWxhc3RpYzpPbWtqaksyTm12MWwwaHR6MmpmanN0dTI=",
         "Content-Type": "application/json"
       },
-      body: `{"query": {"bool": {"must": {"match_all": {}}}}}`
+      body: `{"query": {"bool": {"must": {"match": { "point.scavenger_hunt_id": "${scavengerHuntId}" } } } } }`
   })
   .then(response => {
     let points = response.json()
