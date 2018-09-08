@@ -48,7 +48,7 @@ async function populatePoints(response) {
               <li><b>Clue:</b> ${result._source.point.clue}</li>
             </div>
           <a class="edit-btn" data-method="get" href="#"><i class="fas fa-edit"></i></a>
-          <a class="delete-btn delete-scavenger-hunt-point" rel="nofollow" data-method="delete" href="/scavenger_hunts/${result._source.point.scavenger_hunt_id}/points/${result._source.point.id}"><i class="fas fa-trash-alt"></i></a>
+          <a class="delete-btn delete-scavenger-hunt-point" point_id=${result._source.point.point_id} scavenger_hunt_id=${result._source.point.scavenger_hunt_id} rel="nofollow" data-method="delete" href="/scavenger_hunts/${result._source.point.scavenger_hunt_id}/points/${result._source.point.id}"><i class="fas fa-trash-alt"></i></a>
       </ul>`
       )
   })
