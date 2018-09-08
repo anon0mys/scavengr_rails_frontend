@@ -5,13 +5,12 @@ $(document).ready(() => {
 function deleteScavengerHuntPoint(event) {
   let scavengerHuntId = $(this).attr('scavenger_hunt_id')
   let pointId = $(this).attr('point_id')
-  fetch('https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_delete_by_query', {
-      method: "POST",
+  fetch(`https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_doc/${pointId}`, {
+      method: "DELETE",
       headers: {
         "Authorization": "Basic ZWxhc3RpYzpPbWtqaksyTm12MWwwaHR6MmpmanN0dTI=",
         "Content-Type": "application/json"
-      },
-      body: `{ "query": { "bool": { "must": { "match": { "_id": "${pointId}"  } } } } }`
+      }
   })
   .then(response => fetchPoints(response, scavengerHuntId))
   .catch(error => console.log(error));
