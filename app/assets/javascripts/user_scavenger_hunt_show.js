@@ -13,7 +13,7 @@ function deleteScavengerHuntPoint(event) {
       },
       body: `{ "query": { "bool": { "must": { "match": { "_id": "${pointId}"  } } } } }`
   })
-  .then(response => fetchPoints(response.json(), scavengerHuntId))
+  .then(response => fetchPoints(response, scavengerHuntId))
   .catch(error => console.log(error));
 }
 
