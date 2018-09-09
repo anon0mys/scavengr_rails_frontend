@@ -5,15 +5,14 @@ $(document).ready(() => {
 function deleteScavengerHuntPoint(event) {
   let scavengerHuntId = $(this).attr('scavenger_hunt_id')
   let pointId = $(this).attr('point_id')
-  fetch('https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_delete_by_query', {
-      method: "POST",
+  fetch(`https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_doc/${pointId}`, {
+      method: "DELETE",
       headers: {
         "Authorization": "Basic ZWxhc3RpYzpPbWtqaksyTm12MWwwaHR6MmpmanN0dTI=",
         "Content-Type": "application/json"
-      },
-      body: `{ "query": { "bool": { "must": { "match": { "_id": "${pointId}"  } } } } }`
+      }
   })
-  .then(response => fetchPoints(response.json(), scavengerHuntId))
+  .then(response => fetchPoints(response, scavengerHuntId))
   .catch(error => console.log(error));
 }
 
@@ -48,7 +47,7 @@ async function populatePoints(response) {
               <li><b>Clue:</b> ${result._source.point.clue}</li>
             </div>
           <a class="edit-btn" data-method="get" href="#"><i class="fas fa-edit"></i></a>
-          <a class="delete-btn delete-scavenger-hunt-point" rel="nofollow" data-method="delete" href="/scavenger_hunts/${result._source.point.scavenger_hunt_id}/points/${result._source.point.id}"><i class="fas fa-trash-alt"></i></a>
+          <a class="delete-btn delete-scavenger-hunt-point" point_id=${result._id} scavenger_hunt_id=${result._source.point.scavenger_hunt_id} rel="nofollow" data-method="delete" href="/scavenger_hunts/${result._source.point.scavenger_hunt_id}/points/${result._id}"><i class="fas fa-trash-alt"></i></a>
       </ul>`
       )
   })
