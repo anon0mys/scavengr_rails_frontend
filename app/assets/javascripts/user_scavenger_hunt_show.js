@@ -5,10 +5,10 @@ $(document).ready(() => {
 function deleteScavengerHuntPoint(event) {
   let scavengerHuntId = $(this).attr('scavenger_hunt_id')
   let pointId = $(this).attr('point_id')
-  fetch(`https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_doc/${pointId}`, {
+  fetch(`https://56c0742a24b44184bda57cb2179c62a9.us-west-2.aws.found.io:9243/points/_doc/${pointId}`, {
       method: "DELETE",
       headers: {
-        "Authorization": "Basic ZWxhc3RpYzpPbWtqaksyTm12MWwwaHR6MmpmanN0dTI=",
+        "Authorization": "Basic ZWxhc3RpYzppd0ZnbFpDdU9IT0NoQ0k3Qjd1bXZqdGw=",
         "Content-Type": "application/json"
       }
   })
@@ -18,10 +18,10 @@ function deleteScavengerHuntPoint(event) {
 
 async function fetchPoints(response, scavengerHuntId) {
   await response
-  fetch(`https://bde23565173445efa24d03df46b00ee1.us-east-1.aws.found.io:9243/points/_search`, {
+  fetch(`https://56c0742a24b44184bda57cb2179c62a9.us-west-2.aws.found.io:9243/points/_search`, {
       method: "POST",
       headers: {
-        "Authorization": "Basic ZWxhc3RpYzpPbWtqaksyTm12MWwwaHR6MmpmanN0dTI=",
+        "Authorization": "Basic ZWxhc3RpYzppd0ZnbFpDdU9IT0NoQ0k3Qjd1bXZqdGw=",
         "Content-Type": "application/json"
       },
       body: `{"query": {"bool": {"must": {"match": { "point.scavenger_hunt_id": "${scavengerHuntId}" } } } } }`
